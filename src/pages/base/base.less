@@ -1,0 +1,38 @@
+@accent-color: #4EC1DF;
+@bg-color: #A8E0EF;
+
+a {
+    &:hover,
+    &:link,
+    &:visited,
+    &:active {
+        color: @accent-color;
+        text-decoration: none;
+    }
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #666666;
+}
+
+
+.media(@min; @rules) {
+    @media only screen and (min-width: @min) {
+        @rules();
+    }
+}
+
+.media-desktop-large(@rules) {
+    .media(1366px, @rules);
+}
+
+// Buttons
+button.sparrow-button {
+    background: @accent-color;
+    border-radius: 5px;
+    color: #fff;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 18px;
+}
