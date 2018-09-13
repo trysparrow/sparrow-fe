@@ -1,1 +1,1 @@
-import url  from './login.css';
+import url from './login.less';

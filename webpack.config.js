@@ -25,11 +25,22 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.less$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    { loader: 'css-loader', options: { importLoaders: 1 } },
-                    "postcss-loader",
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1
+                        }
+                    },
+                    {
+                        loader: "less-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    },
                 ]
             }
         ]

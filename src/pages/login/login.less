@@ -1,11 +1,12 @@
-:root {
-    --accent-color: #4EC1DF;
-    --bg-color: #A8E0EF;
-}
+@accent-color: #4EC1DF;
+@bg-color: #A8E0EF;
 
 a {
-    &:hover, &:link, &:visited, &:active {
-        color: var(--accent-color);
+    &:hover,
+    &:link,
+    &:visited,
+    &:active {
+        color: @accent-color;
         text-decoration: none;
     }
 }
@@ -16,7 +17,7 @@ body {
 }
 
 .sparrow-button {
-    background: var(--accent-color);
+    background: @accent-color;
     border-radius: 5px;
     color: #fff;
     padding-top: 8px;
