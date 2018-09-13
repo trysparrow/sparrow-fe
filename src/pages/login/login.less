@@ -16,6 +16,16 @@ body {
     color: #666666;
 }
 
+.media(@min; @rules) {
+    @media only screen and (min-width: @min) {
+        @rules();
+    }
+}
+
+.media-desktop-large(@rules) {
+    .media(1366px, @rules);
+}
+
 .sparrow-button {
     background: @accent-color;
     border-radius: 5px;
@@ -30,7 +40,7 @@ body {
     height: 100%;
 }
 .login-form {
-    flex: 1 600px;
+    flex: 1;
 }
 
 .logo-row {
@@ -49,8 +59,13 @@ body {
 }
 
 .login-heading {
-    margin-top: 96px;
-    margin-bottom: 96px;
+    margin-top: 48px;
+    margin-bottom: 48px;
+
+    .media-desktop-large({
+        margin-top: 96px;
+        margin-bottom: 96px;
+    });
 
     h1 {
         margin: auto;
