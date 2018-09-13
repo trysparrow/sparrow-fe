@@ -1,10 +1,39 @@
 <html>
     <head>
         <title>{{ title }}</title>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
+
+        <!-- Normalize CSS so we start with similar styles in different browsers -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css" type="text/css" />
+
+        <!-- This is particular to this template -->
         <link href="/static/login.css" rel="stylesheet"/>
     </head>
     <body>
-        <h1>Login Page</h1>
+        <div class="container login">
+            <div class="login-form">
+                <div class="logo-row">
+                    <div class="sparrow-logo">
+                        <img src="/static/img/sparrow-logo.png"/>
+                        <span class="logo-sparrow">Sparrow</span>
+                    </div>
+                </div>
+                <div class="login-heading">
+                    <h1>Software enabling companies to provide employees with leave</h1>
+                </div>
+                <div class="dialog-row">
+                    <div class="dialog">
+                        <div class="river">
+                            <h2>Let's get started now</h2>
+                            <span>Or <a href="#">create</a> an account if not registered yet</span>
+                            <button class="sparrow-button">Log In</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-container">
+            </div>
+        </div>
         <script type="text/javascript" src="/static/login.js"></script>
     </body>
 </html>
