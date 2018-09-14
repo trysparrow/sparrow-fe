@@ -1,14 +1,13 @@
 {% extends "pages/base/base.html" %}
+{% import "pages/base/macros.html" as macros %}
+
 {% block header_styles %}
 <link href="/static/login.css" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
     <div class="login-form">
-        <div class="sparrow-logo">
-            <img src="/static/img/sparrow-logo.png"/>
-            <span class="logo-sparrow">Sparrow</span>
-        </div>
+        {{ macros.sparrow_logo() }}
 
         {% block content %}{% endblock %}
     </div>
