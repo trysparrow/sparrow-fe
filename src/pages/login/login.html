@@ -20,8 +20,15 @@
         {% if path == "login" %}
         <h2 class="dialog-title">Log in</h2>
 
-        <input type="text" class="sparrow-input" name="username" placeholder="Username" value="" required/>
-        <input type="password" class="sparrow-input" name="password" placeholder="Password" value="" required/>
+        <div class="sparrow-input">
+            <i class="fas fa-user"></i>
+            <input type="text" name="username" placeholder="Username" required/>
+        </div>
+
+        <div class="sparrow-input">
+            <i class="fas fa-key"></i>
+            <input type="password" id="password" name="password" placeholder="Password" value="" required />
+        </div>
 
         <div class="remember-form ">
             <div class="sparrow-checkbox left">
@@ -42,26 +49,39 @@
         {% elif path == "signup" %}
         <h2 class="dialog-title">Create your account</h2>
 
-        <input type="text" class="sparrow-input" name="full-name" placeholder="Full Name" required/>
+        <div class="sparrow-input">
+            <i class="fas fa-user"></i>
+            <input type="text" name="username" placeholder="Username" required/>
+        </div>
 
-        <input type="email" class="sparrow-input" name="email" placeholder="Email" required/>
+        <div class="sparrow-input">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="email" placeholder="Email" required/>
+        </div>
 
-        <input type="text" class="sparrow-input" name="username" placeholder="Username" value="" required/>
+        <div class="sparrow-input">
+            <i class="fas fa-key"></i>
+            <input type="password" id="password" name="password" placeholder="Password" value="" required />
+        </div>
 
-        <input type="password" class="sparrow-input" id="password" name="password" placeholder="Password" value="" required />
+        <div class="sparrow-input">
+            <i class="fas fa-key"></i>
+            <input type="password" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
+        </div>
 
-        <input type="password" class="sparrow-input" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
-
-        <select class="sparrow-select" placeholder="Status">
-            <option value="full-time">Full Time</option>
-            <option value="contractor">Contractor</option>
-        </select>
+        <div class="sparrow-select">
+            <i class="fas fa-users"></i>
+            <select  placeholder="Status">
+                <option value="" disabled selected hidden>Status</option>
+                <option value="full-time">Full Time</option>
+                <option value="contractor">Contractor</option>
+            </select>
+        </div>
 
         <div class="remember-form">
             <div class="sparrow-checkbox">
                 <input type="checkbox" id="checkbox-remember" name="remember">
                 <label for="checkbox-remember">I agree to the <a href="">Terms of Service</a></label>
-
             </div>
         </div>
         <button type="submit" class="sparrow-button sparrow-primary">Log In</button>
@@ -82,7 +102,10 @@
         <span class="dialog-subtitle">Enter the username you use and you will receive an e-mail containing a link for changing your password.</span>
 
 
-        <input type="text" class="sparrow-input" name="username" placeholder="Username" value="" required />
+        <div class="sparrow-input">
+            <i class="fas fa-user"></i>
+            <input type="text" name="username" placeholder="Username" required/>
+        </div>
 
         <button type="submit" class="sparrow-button sparrow-primary">Reset Password</button>
 
@@ -90,11 +113,20 @@
         <h2 class="dialog-title">Change your password:</h2>
 
         <!-- TODO: client side validation password match -->
-        <input type="text" class="sparrow-input" name="username" placeholder="Username" value="" required />
+        <div class="sparrow-input">
+            <i class="fas fa-user"></i>
+            <input type="text" name="username" placeholder="Username" required/>
+        </div>
 
-        <input type="password" class="sparrow-input" id="password" name="password" placeholder="Password" value="" required />
+        <div class="sparrow-input">
+            <i class="fas fa-key"></i>
+            <input type="password" id="password" name="password" placeholder="Password" value="" required />
+        </div>
 
-        <input type="password" class="sparrow-input" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
+        <div class="sparrow-input">
+            <i class="fas fa-key"></i>
+            <input type="password" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
+        </div>
 
         <button type="submit" class="sparrow-button sparrow-primary">Reset Password</button>
 

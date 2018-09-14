@@ -51,8 +51,8 @@ button.sparrow-button {
 }
 
 // General Form Inputs
-input.sparrow-input,
-select.sparrow-select {
+.sparrow-input,
+.sparrow-select {
     font-size: 15px;
     border: 1px @color-primary-cta solid;
     border-radius: 5px;
@@ -60,10 +60,26 @@ select.sparrow-select {
 
     color: @color-primary-cta;
 
-    background: #ffffff;
-    appearance: none;
+    display: flex;
+    align-items: center;
 
-    &::placeholder {
+
+    i {
+        line-height: 15px;
+        padding-right: 8px;
+    }
+
+    input,
+    select {
+        background: #ffffff;
+        appearance: none;
+        color: @color-primary-cta;
+        flex: 1;
+        border: 0;
+    }
+
+    input::placeholder,
+    select::placeholder {
         color: @color-primary-cta
     }
 }
@@ -82,46 +98,23 @@ select.sparrow-select {
     }
 
     label {
-        position: relative;
-
-        &::before,
-        &::after {
-            position: absolute;
-        }
-
-
         &::before{
-            top: 0;
-            left: -24px;
-            content: "";
-
-            height: 16px;
-            width: 16px;
-
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 50%;
-        }
-
-        &::after {
-            top: 3px;
-            left: -21px;
-            content: "";
-            height: 12px;
-            width: 12px;
-            background-color: @color-primary-cta;
-            border-radius: 50%;
+            margin-right: 8px;
+            font-family: "Font Awesome 5 Free";
+            color: @color-primary-cta;
         }
     }
 
     /*Hide the checkmark by default*/
-    input[type="checkbox"] + label::after {
-        content: none;
+    input[type="checkbox"] + label::before {
+        content: "\f111";
     }
 
     /*Unhide the checkmark on the checked state*/
-    input[type="checkbox"]:checked + label::after {
-        content: "";
+    input[type="checkbox"]:checked + label::before {
+        content: "\f058";
     }
+
     /*Adding focus styles on the outer-box of the fake checkbox*/
     input[type="checkbox"]:focus + label::before {
         outline: currentColor auto 5px;
