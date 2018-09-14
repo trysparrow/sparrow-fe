@@ -26,7 +26,7 @@ def login():
     else:
         return show_the_login_form(path)
 
-if (environ['DEVELOPMENT']):
+if (environ.get('DEPLOY_ENV') == "DEV"):
     server = Server(app.wsgi_app)
     server.watch('src/')
     server.serve()
