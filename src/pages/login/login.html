@@ -9,6 +9,51 @@
 </div>
 {% endif %}
 
+{% macro input(name='', value='', placeholder='...', type='text', required=True, icon='user') -%}
+<div class="row sparrow-input">
+    <i class="fas fa-{{ icon }}"></i>
+    <input
+        type="{{ type }}"
+        name="{{ name }}"
+        value="{{ value }}"
+        placeholder="{{ placeholder }}"
+        {% if required %} required {% endif %}
+    />
+</div>
+{%- endmacro %}
+
+{% macro select(name='', placeholder='...', required=True, icon='user') -%}
+<div class="row sparrow-select">
+    <i class="fas fa-{{ icon }}"></i>
+    <select
+        {% if required %} required {% endif %}
+    >
+        <option value="" disabled selected hidden>{{ placeholder }}</option>
+        {{ caller () }}
+    </select>
+</div>
+{%- endmacro %}
+
+{% macro checkbox(name='', placeholder='...', id='', class='', required=True) -%}
+<div class="sparrow-checkbox {{ class }}">
+    <input
+        type="checkbox"
+        name="{{ name }}"
+        id="checkbox-remember"
+        {% if required %} required {% endif %}
+    >
+    <label for="checkbox-remember">
+        {{ caller() }}
+    </label>
+</div>
+{%- endmacro %}
+
+
+{% macro button(name='', priority='primary', type='submit', id='', class='') -%}
+<button type="{{ type }}" id="{{ id }}" class="sparrow-button sparrow-{{ priority }} {{ class }}"> {{ caller() }}</button>
+{%- endmacro %}
+
+
 <div class="dialog">
     <!-- form_submit_endpoint should be provided by the integration -->
     <form
@@ -20,25 +65,19 @@
         {% if path == "login" %}
         <h2 class="dialog-title">Log in</h2>
 
-        <div class="row sparrow-input">
-            <i class="fas fa-user"></i>
-            <input type="text" name="username" placeholder="Username" required/>
-        </div>
+        {{ input(name='username', placeholder='Username', icon='user')  }}
+        {{ input(type='password', name='password', placeholder='Password', icon='key')  }}
 
-        <div class="row sparrow-input">
-            <i class="fas fa-key"></i>
-            <input type="password" id="password" name="password" placeholder="Password" value="" required />
-        </div>
-
-        <div class="row remember-form ">
-            <div class="sparrow-checkbox left">
-                <input type="checkbox" id="checkbox-remember" name="remember">
-                <label for="checkbox-remember">Remember me</label>
-            </div>
-
+        <div class="row remember-form">
+            {% call checkbox(name="remember", class="left") %}
+                Remember me
+            {% endcall %}
             <a class="right" href="#">Forgot Password?</a>
         </div>
-        <button type="submit" class="row sparrow-button sparrow-primary">Log In</button>
+
+        {% call button(class='row') %}
+        Log In
+        {% endcall %}
 
         <span class="dialog-footnote">
             Don't have an account? <a href="#">Sign Up</a>
@@ -47,53 +86,44 @@
         {% elif path == "signup" %}
         <h2 class="dialog-title">Create your account</h2>
 
-        <div class="row sparrow-input">
-            <i class="fas fa-user"></i>
-            <input type="text" name="username" placeholder="Username" required/>
-        </div>
+        {{ input(type='text', name='username', placeholder='Username', icon='user') }}
 
-        <div class="row sparrow-input">
-            <i class="fas fa-envelope"></i>
-            <input type="email" name="email" placeholder="Email" required/>
-        </div>
+        {{ input(type='email', name='email', placeholder='Email', icon='envelope') }}
 
-        <div class="row sparrow-input">
-            <i class="fas fa-key"></i>
-            <input type="password" id="password" name="password" placeholder="Password" value="" required />
-        </div>
+        {{ input(type='password', name='password', placeholder='Password', icon='key') }}
 
-        <div class="row sparrow-input">
-            <i class="fas fa-key"></i>
-            <input type="password" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
-        </div>
-
-        <div class="row sparrow-select">
-            <i class="fas fa-users"></i>
-            <select  placeholder="Status">
-                <option value="" disabled selected hidden>Status</option>
-                <option value="full-time">Full Time</option>
-                <option value="contractor">Contractor</option>
-            </select>
-        </div>
+        {{ input(type='password', name='confirm_password', placeholder='Confirm Password', icon='key') }}
+        {% call select(name='status', placeholder='Status', required=True, icon='user') %}
+            <option value="full-time">Full Time</option>
+            <option value="contractor">Contractor</option>
+        {% endcall %}
 
         <div class="row remember-form">
-            <div class="sparrow-checkbox">
-                <input type="checkbox" id="checkbox-remember" name="remember">
-                <label for="checkbox-remember">I agree to the <a href="">Terms of Service</a></label>
-            </div>
+            {% call checkbox(name="remember") %}
+                I agree to the <a href="">Terms of Service</a>
+            {% endcall %}
         </div>
 
-        <button type="submit" class="row sparrow-button sparrow-primary">Log In</button>
+        {% call button(class='row') %}
+        Register
+        {% endcall %}
 
         <span class="row dialog-footnote">
-            Don't have an account? <a href="#">Sign Up</a>
+            Already have an account? <a href="#">Log In</a>
         </span>
         {% elif path == "select" %}
         <h2 class="dialog-title">Access to:</h2>
 
-        <!-- It's important to keep the name attribute in this buttons. It will tell the server which button was clicked -->
-        <button type="submit" name="employee" class="row sparrow-button sparrow-secondary">Employee Dashboard</button>
-        <button type="submit" name="admin" class="row sparrow-button sparrow-primary">Admin Dashboard</button>
+        <a href="/login">
+            {% call button(type='button', class='row', priority='secondary') %}
+            Employee Dashboard
+            {% endcall %}
+        </a>
+        <a href="login">
+            {% call button(type='button', class='row') %}
+            Admin Dashboard
+            {% endcall %}
+        </a>
 
         {% elif path == "forgot_pass" %}
         <h2 class="dialog-title">Forgot Password?</h2>
