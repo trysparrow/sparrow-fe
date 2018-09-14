@@ -28,3 +28,6 @@ def login():
         return show_the_login_form(path)
 
 server.serve()
+
+def run():
+    server.serve()

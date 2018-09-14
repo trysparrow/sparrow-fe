@@ -1,1 +1,1 @@
-web: gunicorn sparrow:app
+web: gunicorn sparrow:run
