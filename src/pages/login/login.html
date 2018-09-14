@@ -20,17 +20,17 @@
         {% if path == "login" %}
         <h2 class="dialog-title">Log in</h2>
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-user"></i>
             <input type="text" name="username" placeholder="Username" required/>
         </div>
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-key"></i>
             <input type="password" id="password" name="password" placeholder="Password" value="" required />
         </div>
 
-        <div class="remember-form ">
+        <div class="row remember-form ">
             <div class="sparrow-checkbox left">
                 <input type="checkbox" id="checkbox-remember" name="remember">
                 <label for="checkbox-remember">Remember me</label>
@@ -38,38 +38,36 @@
 
             <a class="right" href="#">Forgot Password?</a>
         </div>
-        <button type="submit" class="sparrow-button sparrow-primary">Log In</button>
+        <button type="submit" class="row sparrow-button sparrow-primary">Log In</button>
 
         <span class="dialog-footnote">
             Don't have an account? <a href="#">Sign Up</a>
         </span>
 
-
-
         {% elif path == "signup" %}
         <h2 class="dialog-title">Create your account</h2>
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-user"></i>
             <input type="text" name="username" placeholder="Username" required/>
         </div>
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-envelope"></i>
             <input type="email" name="email" placeholder="Email" required/>
         </div>
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-key"></i>
             <input type="password" id="password" name="password" placeholder="Password" value="" required />
         </div>
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-key"></i>
             <input type="password" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
         </div>
 
-        <div class="sparrow-select">
+        <div class="row sparrow-select">
             <i class="fas fa-users"></i>
             <select  placeholder="Status">
                 <option value="" disabled selected hidden>Status</option>
@@ -78,23 +76,24 @@
             </select>
         </div>
 
-        <div class="remember-form">
+        <div class="row remember-form">
             <div class="sparrow-checkbox">
                 <input type="checkbox" id="checkbox-remember" name="remember">
                 <label for="checkbox-remember">I agree to the <a href="">Terms of Service</a></label>
             </div>
         </div>
-        <button type="submit" class="sparrow-button sparrow-primary">Log In</button>
 
-        <span class="dialog-footnote">
+        <button type="submit" class="row sparrow-button sparrow-primary">Log In</button>
+
+        <span class="row dialog-footnote">
             Don't have an account? <a href="#">Sign Up</a>
         </span>
         {% elif path == "select" %}
         <h2 class="dialog-title">Access to:</h2>
 
         <!-- It's important to keep the name attribute in this buttons. It will tell the server which button was clicked -->
-        <button type="submit" name="employee" class="sparrow-button sparrow-secondary">Employee Dashboard</button>
-        <button type="submit" name="admin" class="sparrow-button sparrow-primary">Admin Dashboard</button>
+        <button type="submit" name="employee" class="row sparrow-button sparrow-secondary">Employee Dashboard</button>
+        <button type="submit" name="admin" class="row sparrow-button sparrow-primary">Admin Dashboard</button>
 
         {% elif path == "forgot_pass" %}
         <h2 class="dialog-title">Forgot Password?</h2>
@@ -102,39 +101,39 @@
         <span class="dialog-subtitle">Enter the username you use and you will receive an e-mail containing a link for changing your password.</span>
 
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-user"></i>
             <input type="text" name="username" placeholder="Username" required/>
         </div>
 
-        <button type="submit" class="sparrow-button sparrow-primary">Reset Password</button>
+        <button type="submit" class="row sparrow-button sparrow-primary">Reset Password</button>
 
         {% elif path == "reset_pass" %}
         <h2 class="dialog-title">Change your password:</h2>
 
         <!-- TODO: client side validation password match -->
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-user"></i>
             <input type="text" name="username" placeholder="Username" required/>
         </div>
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-key"></i>
             <input type="password" id="password" name="password" placeholder="Password" value="" required />
         </div>
 
-        <div class="sparrow-input">
+        <div class="row sparrow-input">
             <i class="fas fa-key"></i>
             <input type="password" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
         </div>
 
-        <button type="submit" class="sparrow-button sparrow-primary">Reset Password</button>
+        <button type="submit" class="row sparrow-button sparrow-primary">Reset Password</button>
 
         {% else %}
         <h2 class="dialog-title">Let's get started now</h2>
 
         <span class="dialog-subtitle">Or <a href="#">create</a> an account if not registered yet</span>
-        <button type="submit" class="sparrow-button sparrow-primary">Log In</button>
+        <button type="submit" class="row sparrow-button sparrow-primary">Log In</button>
 
         {% endif %}
 
