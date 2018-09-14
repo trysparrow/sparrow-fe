@@ -1,4 +1,5 @@
-@accent-color: #4EC1DF;
+@color-default: #666666;
+@color-primary-cta: #4EC1DF;
 @bg-color: #A8E0EF;
 
 a {
@@ -6,16 +7,23 @@ a {
     &:link,
     &:visited,
     &:active {
-        color: @accent-color;
+        color: @color-primary-cta;
         text-decoration: none;
     }
 }
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
-    color: #666666;
+    color: @color-default;
 }
 
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
 
 .media(@min; @rules) {
     @media only screen and (min-width: @min) {
@@ -29,10 +37,94 @@ body {
 
 // Buttons
 button.sparrow-button {
-    background: @accent-color;
+    background: #fff;
+    color: @color-primary-cta;
+    border-color: @color-primary-cta;
     border-radius: 5px;
-    color: #fff;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px;
     font-size: 18px;
+
+    &.sparrow-primary {
+        background: @color-primary-cta;
+        color: #fff;
+    }
+}
+
+// General Form Inputs
+input.sparrow-input,
+select.sparrow-select {
+    font-size: 15px;
+    border: 1px @color-primary-cta solid;
+    border-radius: 5px;
+    padding: 8px;
+
+    color: @color-primary-cta;
+
+    background: #ffffff;
+    appearance: none;
+
+    &::placeholder {
+        color: @color-primary-cta
+    }
+}
+
+// Select Boxes
+
+select.sparrow-select {
+}
+
+// CheckBox
+.sparrow-checkbox {
+    padding-left: 8px;
+
+    input[type="checkbox"] {
+        opacity: 0;
+    }
+
+    label {
+        position: relative;
+
+        &::before,
+        &::after {
+            position: absolute;
+        }
+
+
+        &::before{
+            top: 0;
+            left: -24px;
+            content: "";
+
+            height: 16px;
+            width: 16px;
+
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+
+        &::after {
+            top: 3px;
+            left: -21px;
+            content: "";
+            height: 12px;
+            width: 12px;
+            background-color: @color-primary-cta;
+            border-radius: 50%;
+        }
+    }
+
+    /*Hide the checkmark by default*/
+    input[type="checkbox"] + label::after {
+        content: none;
+    }
+
+    /*Unhide the checkmark on the checked state*/
+    input[type="checkbox"]:checked + label::after {
+        content: "";
+    }
+    /*Adding focus styles on the outer-box of the fake checkbox*/
+    input[type="checkbox"]:focus + label::before {
+        outline: currentColor auto 5px;
+    }
+
 }

@@ -5,22 +5,45 @@
     height: 100%;
 }
 
-.login-form {
+.login-form,
+.hero-image-container {
     flex: 1;
 }
 
-.logo-row {
-    padding-left: 40px;
-    padding-top: 40px;
-    font-size: 40px;
-    color: #415A6B;
+.hero-image-container {
+    background: url('/static/img/sparrow-login-bg.svg');
+    background-size: cover;
 }
 
+.login-form {
+    padding-bottom: 64px;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+// Login Form
+
 .sparrow-logo {
+    margin-left: 32px;
+    margin-top: 32px;
+    align-self: flex-start;
+
+
+    font-size: 24px;
+    color: #415A6B;
+
     span {
         position: relative;
         left: -8px;
-        top: -16px;
+        top: -19px;
+    }
+
+    img {
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -28,58 +51,70 @@
     margin-top: 48px;
     margin-bottom: 48px;
 
-    .media-desktop-large({
-        margin-top: 96px;
-        margin-bottom: 96px;
-    });
-
     h1 {
         margin: auto;
         font-weight: lighter;
         width: 60%;
-        font-size: 32px;
-        line-height: 40px;
         text-align: center;
+        font-size: 24px;
+        line-height: 32px;
     }
 }
 
 .dialog {
+
+    // Arbitrarily chosen for very big screens
+    max-width: 500px;
     width: 60%;
+
     margin: auto;
     padding: 32px;
     padding-top: 48px;
     border-radius: 15px;
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.1);
+    font-weight: 300;
+    font-size: 12px;
 
+    @space-between-elements: 24px;
+
+    // This is the middle strip where content lives and has a max width
     .river {
         display: flex;
         flex-direction: column;
         width: 60%;
+        max-width: 250px;
         margin: auto;
         text-align: center;
     }
 
-    h2 {
+    &-title {
         margin: 16px 0;
-        font-size: 28px;
+        font-size: 24px;
         font-weight: normal;
     }
 
-    span {
+    &-subtitle {
         margin-top: 16px;
         margin-bottom: 40px;
-        font-size: 20px;
-        font-weight: 300;
+        font-size: 14px;
     }
 
-    button {
-        margin: auto;
-        width: 33%;
+    .sparrow-input {
+        width: 100%;
+        margin: (@space-between-elements / 2) auto;
     }
-}
 
-.hero-image-container {
-    flex: 1;
-    background: url('/static/img/sparrow-login-bg.svg');
-    background-size: cover;
+
+    .remember-form {
+        margin-top: (@space-between-elements / 2);
+        margin-bottom: (@space-between-elements / 2);
+
+        .sparrow-checkbox,
+        .forgot-password {
+            font-weight: 300;
+        }
+    }
+
+    &-footnote {
+    }
 }

@@ -1,39 +1,113 @@
-<html>
-    <head>
-        <title>{{ title }}</title>
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
+{% extends 'pages/login/start_template.html' %}
+{% block title %} {{ title }} {% endblock %}
 
-        <!-- Normalize CSS so we start with similar styles in different browsers -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css" type="text/css" />
+{% block content %}
 
-        <!-- This is particular to this template -->
-        <link href="/static/login.css" rel="stylesheet"/>
-    </head>
-    <body>
-        <div class="container login">
-            <div class="login-form">
-                <div class="logo-row">
-                    <div class="sparrow-logo">
-                        <img src="/static/img/sparrow-logo.png"/>
-                        <span class="logo-sparrow">Sparrow</span>
-                    </div>
-                </div>
-                <div class="login-heading">
-                    <h1>Software enabling companies to provide employees with leave</h1>
-                </div>
-                <div class="dialog-row">
-                    <div class="dialog">
-                        <div class="river">
-                            <h2>Let's get started now</h2>
-                            <span>Or <a href="#">create</a> an account if not registered yet</span>
-                            <button class="sparrow-button">Log In</button>
-                        </div>
-                    </div>
-                </div>
+{% if path == "start" %}
+<div class="login-heading">
+    <h1>Software enabling companies to provide employees with leave</h1>
+</div>
+{% endif %}
+
+<div class="dialog">
+    <!-- form_submit_endpoint should be provided by the integration -->
+    <form
+        class="river"
+        method="POST"
+        autocomplete="on"
+        action={{ form_submit_endpoint|default("/login", true) }}>
+
+        {% if path == "login" %}
+        <h2 class="dialog-title">Log in</h2>
+
+        <input type="text" class="sparrow-input" name="username" placeholder="Username" value="" required/>
+        <input type="password" class="sparrow-input" name="password" placeholder="Password" value="" required/>
+
+        <div class="remember-form ">
+            <div class="sparrow-checkbox left">
+                <input type="checkbox" id="checkbox-remember" name="remember">
+                <label for="checkbox-remember">Remember me</label>
             </div>
-            <div class="hero-image-container">
+
+            <a class="right" href="#">Forgot Password?</a>
+        </div>
+        <button type="submit" class="sparrow-button sparrow-primary">Log In</button>
+
+        <span class="dialog-footnote">
+            Don't have an account? <a href="#">Sign Up</a>
+        </span>
+
+
+
+        {% elif path == "signup" %}
+        <h2 class="dialog-title">Create your account</h2>
+
+        <input type="text" class="sparrow-input" name="full-name" placeholder="Full Name" required/>
+
+        <input type="email" class="sparrow-input" name="email" placeholder="Email" required/>
+
+        <input type="text" class="sparrow-input" name="username" placeholder="Username" value="" required/>
+
+        <input type="password" class="sparrow-input" id="password" name="password" placeholder="Password" value="" required />
+
+        <input type="password" class="sparrow-input" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
+
+        <select class="sparrow-select" placeholder="Status">
+            <option value="full-time">Full Time</option>
+            <option value="contractor">Contractor</option>
+        </select>
+
+        <div class="remember-form">
+            <div class="sparrow-checkbox">
+                <input type="checkbox" id="checkbox-remember" name="remember">
+                <label for="checkbox-remember">I agree to the <a href="">Terms of Service</a></label>
+
             </div>
         </div>
-        <script type="text/javascript" src="/static/login.js"></script>
-    </body>
-</html>
+        <button type="submit" class="sparrow-button sparrow-primary">Log In</button>
+
+        <span class="dialog-footnote">
+            Don't have an account? <a href="#">Sign Up</a>
+        </span>
+        {% elif path == "select" %}
+        <h2 class="dialog-title">Access to:</h2>
+
+        <!-- It's important to keep the name attribute in this buttons. It will tell the server which button was clicked -->
+        <button type="submit" name="employee" class="sparrow-button sparrow-secondary">Employee Dashboard</button>
+        <button type="submit" name="admin" class="sparrow-button sparrow-primary">Admin Dashboard</button>
+
+        {% elif path == "forgot_pass" %}
+        <h2 class="dialog-title">Forgot Password?</h2>
+
+        <span class="dialog-subtitle">Enter the username you use and you will receive an e-mail containing a link for changing your password.</span>
+
+
+        <input type="text" class="sparrow-input" name="username" placeholder="Username" value="" required />
+
+        <button type="submit" class="sparrow-button sparrow-primary">Reset Password</button>
+
+        {% elif path == "reset_pass" %}
+        <h2 class="dialog-title">Change your password:</h2>
+
+        <!-- TODO: client side validation password match -->
+        <input type="text" class="sparrow-input" name="username" placeholder="Username" value="" required />
+
+        <input type="password" class="sparrow-input" id="password" name="password" placeholder="Password" value="" required />
+
+        <input type="password" class="sparrow-input" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
+
+        <button type="submit" class="sparrow-button sparrow-primary">Reset Password</button>
+
+        {% else %}
+        <h2 class="dialog-title">Let's get started now</h2>
+
+        <span class="dialog-subtitle">Or <a href="#">create</a> an account if not registered yet</span>
+        <button type="submit" class="sparrow-button sparrow-primary">Log In</button>
+
+        {% endif %}
+
+
+    </form>
+
+</div>
+{% endblock %}
