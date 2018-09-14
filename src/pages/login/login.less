@@ -1,16 +1,16 @@
 @import "../base/base.less";
 
-.login-form,
-.hero-image-container {
-    flex: 1;
-}
-
 .hero-image-container {
     background: url('/static/img/sparrow-login-bg.svg');
     background-size: cover;
+    flex: 0;
+    .media-desktop({
+        flex: 1;
+    });
 }
 
 .login-form {
+    flex: 1;
     padding-bottom: 64px;
     display: flex;
     overflow-y: auto;
