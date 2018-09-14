@@ -6,6 +6,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         login: './src/pages/login/login.js',
+        dashboard: './src/pages/dashboard/dashboard.js',
     },
     output: {
         filename: '[name].js',

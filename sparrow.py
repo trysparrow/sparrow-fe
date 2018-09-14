@@ -26,6 +26,10 @@ def login():
     else:
         return show_the_login_form(path)
 
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    return render_template("pages/dashboard/dashboard.html", page_title="Dashboard - Sparrow")
+
 if (environ.get('DEPLOY_ENV') == "DEV"):
     server = Server(app.wsgi_app)
     server.watch('src/')
