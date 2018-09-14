@@ -16,7 +16,7 @@ def do_the_login(path):
     return show_the_login_form(path)
 
 def show_the_login_form(path):
-    return render_template("pages/login/login.html", title="Login - Sparrow", path=path)
+    return render_template("pages/login/login.html", page_title="Login - Sparrow", path=path)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
