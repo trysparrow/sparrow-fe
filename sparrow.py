@@ -3,10 +3,9 @@ from flask import request
 from flask import render_template
 from livereload import Server
 
-app = Flask(__name__, template_folder='src')
+from os import environ
 
-server = Server(app.wsgi_app)
-server.watch('src/')
+app = Flask(__name__, template_folder='src')
 
 @app.route("/")
 def hello():
@@ -27,7 +26,7 @@ def login():
     else:
         return show_the_login_form(path)
 
-server.serve()
-
-def run():
+if (environ['DEVELOPMENT']):
+    server = Server(app.wsgi_app)
+    server.watch('src/')
     server.serve()
