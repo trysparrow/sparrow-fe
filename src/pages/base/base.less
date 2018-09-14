@@ -2,6 +2,23 @@
 @color-primary-cta: #4EC1DF;
 @bg-color: #A8E0EF;
 
+// Font Sizes (16px of reference for 1rem)
+
+@font-size-10: 0.6125rem;
+@font-size-12: 0.75rem;
+@font-size-13: 0.8125rem;
+@font-size-14: 0.875rem;
+@font-size-16: 1rem;
+@font-size-18: 1.125rem;
+@font-size-20: 1.25rem;
+@font-size-22: 1.375rem;
+@font-size-24: 1.5rem;
+@font-size-26: 1.625rem;
+@font-size-28: 1.75rem;
+@font-size-30: 1.875rem;
+@font-size-36: 2.25rem;
+
+
 a {
     &:hover,
     &:link,
@@ -15,6 +32,12 @@ a {
 body {
     font-family: 'Source Sans Pro', sans-serif;
     color: @color-default;
+}
+
+// Common container
+.container {
+    display: flex;
+    height: 100%;
 }
 
 .left {
@@ -42,7 +65,7 @@ button.sparrow-button {
     border-color: @color-primary-cta;
     border-radius: 5px;
     padding: 8px;
-    font-size: 18px;
+    font-size: @font-size-18;
 
     &.sparrow-primary {
         background: @color-primary-cta;
@@ -53,7 +76,7 @@ button.sparrow-button {
 // General Form Inputs
 .sparrow-input,
 .sparrow-select {
-    font-size: 15px;
+    font-size: @font-size-16;
     border: 1px @color-primary-cta solid;
     border-radius: 5px;
     padding: 8px;
