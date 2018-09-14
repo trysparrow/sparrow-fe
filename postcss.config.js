@@ -2,7 +2,8 @@ module.exports = {
     plugins: {
         'postcss-nesting': {},
         'postcss-preset-env': {
-            stage: 0
+            stage: 0,
+            browsers: ["last 2 versions", "> 5%"]
         },
     }
 };
