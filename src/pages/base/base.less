@@ -66,6 +66,11 @@ body {
     .media(1367px, @rules);
 }
 
+.square(@size) {
+    width: @size;
+    height: @size;
+}
+
 // Buttons
 button.sparrow-button {
     background: #fff;
@@ -168,4 +173,11 @@ select.sparrow-select {
         width: 60px;
         height: 60px;
     }
+}
+
+.circle-with-border {
+    .square(100px);
+    box-sizing: border-box;
+    border: 3px @color-primary-cta solid;
+    border-radius: 50%;
 }
