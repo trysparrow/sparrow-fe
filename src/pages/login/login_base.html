@@ -6,13 +6,15 @@
 {% endblock %}
 
 {% block body %}
-    <div class="login-form">
+<div class="row h-100">
+    <div class="col-lg col-xl login-form h-100">
         {{ macros.sparrow_logo() }}
 
-        {% block content %}{% endblock %}
+        {# {% block content %}{% endblock %} #}
     </div>
 
-    <div class="hero-image-container" />
+    <div class="col-xl hero-image-container" />
+</div>
 {% endblock %}
 
 {% block footer_scripts %}
