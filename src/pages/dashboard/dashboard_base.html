@@ -9,8 +9,50 @@
 {% block body %}
 
 <div class="sidebar">
-    <h1>SideBar</h1>
+
     {{ macros.sparrow_logo() }}
+
+    <div class="sidebar-profile">
+        <img alt="your profile picture" class="circle-with-border" src="https://0.gravatar.com/avatar/f5348e1061215cf50eb1682b5da444ea?s=400&d=mm"/>
+        <span class="sidebar-profile-name">Diego Berrocal Chinchay</span>
+    </div>
+
+    <!-- TODO: For the person transforming this HTML into a template.  -->
+    <nav class="sidebar-destinations">
+        <ol>
+            <li>
+                <a href="/dashboard" class="current">
+                    <i class="fas fa-chart-pie"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="/tasks">
+                    <i class="fas fa-chart-pie"></i>
+                    Tasks
+                </a>
+            </li>
+            <li>
+                <a href="/forms">
+                    <i class="fas fa-chart-pie"></i>
+                    Forms
+                </a>
+            </li>
+            <li>
+                <a href="/faq">
+                    <i class="fas fa-chart-pie"></i>
+                    FAQ
+                </a>
+            </li>
+            <li>
+                <a href="/profile">
+                    <i class="fas fa-chart-pie"></i>
+                    Profile
+                </a>
+            </li>
+        </ol>
+    </nav>
+
 </div>
 
 <div class="content">
