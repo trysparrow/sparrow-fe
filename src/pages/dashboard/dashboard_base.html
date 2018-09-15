@@ -6,6 +6,20 @@
 <link href="/static/dashboard.css" rel="stylesheet"/>
 {% endblock %}
 
+
+{% macro sidebar_item(item_page='dashboard', text='Dashboard', icon='chart-pie') -%}
+<li>
+    <a href="/{{ item_page }}"
+        {% if page == item_page %}
+        class="current"
+        {% endif %}
+    >
+        <i class="fas fa-{{ icon }}"></i>
+        {{ text }}
+    </a>
+</li>
+{%- endmacro %}
+
 {% block body %}
 
 <div class="sidebar">
@@ -17,39 +31,18 @@
         <span class="sidebar-profile-name">Diego Berrocal Chinchay</span>
     </div>
 
+
     <!-- TODO: For the person transforming this HTML into a template.  -->
     <nav class="sidebar-destinations">
         <ol>
-            <li>
-                <a href="/dashboard" class="current">
-                    <i class="fas fa-chart-pie"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="/tasks">
-                    <i class="fas fa-chart-pie"></i>
-                    Tasks
-                </a>
-            </li>
-            <li>
-                <a href="/forms">
-                    <i class="fas fa-chart-pie"></i>
-                    Forms
-                </a>
-            </li>
-            <li>
-                <a href="/faq">
-                    <i class="fas fa-chart-pie"></i>
-                    FAQ
-                </a>
-            </li>
-            <li>
-                <a href="/profile">
-                    <i class="fas fa-chart-pie"></i>
-                    Profile
-                </a>
-            </li>
+            {{ sidebar_item(item_page='dashboard', text='Dashboard', icon='chart-pie') }}
+            {{ sidebar_item(item_page='tasks', text='Tasks', icon='tasks') }}
+
+            {{ sidebar_item(item_page='forms', text='Forms', icon='file-signature') }}
+
+            {{ sidebar_item(item_page='faq', text='FAQ', icon='question') }}
+
+            {{ sidebar_item(item_page='profile', text='Profile', icon='user-edit') }}
         </ol>
     </nav>
 
