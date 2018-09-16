@@ -1,173 +1,227 @@
+{# -*- engine: django -*- #}
+
 {% extends 'pages/login/login_base.html' %}
 
 {% block content %}
 
-{% if path == "start" %}
-<div class="login-heading">
-    <h1>Software enabling companies to provide employees with leave</h1>
-</div>
-{% endif %}
+    {% macro title(text='Change This Title') -%}
+        <h2 class="dialog-title">
+            {{ text }}
+        </h2>
+    {%- endmacro %}
 
-{% macro input(name='', value='', placeholder='...', type='text', required=True, icon='user') -%}
-<div class="row sparrow-input">
-    <i class="fas fa-{{ icon }}"></i>
-    <input
-        type="{{ type }}"
-        name="{{ name }}"
-        value="{{ value }}"
-        placeholder="{{ placeholder }}"
-        {% if required %} required {% endif %}
-    />
-</div>
-{%- endmacro %}
+    {% macro input(name='', label=False, id='', class='', value='', placeholder='...', type='text', required=True, icon=False) -%}
+        <div class="form-group">
+            <div class="input-group">
+                {% if icon %}
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-{{ icon }}"></i>
+                        </span>
+                    </div>
+                {% endif %}
 
-{% macro select(name='', placeholder='...', required=True, icon='user') -%}
-<div class="row sparrow-select">
-    <i class="fas fa-{{ icon }}"></i>
-    <select
-        {% if required %} required {% endif %}
-    >
-        <option value="" disabled selected hidden>{{ placeholder }}</option>
-        {{ caller () }}
-    </select>
-</div>
-{%- endmacro %}
+                <input
+                    type="{{ type }}"
+                    class="form-control"
+                    name="{{ name }}"
+                    id="{{ id }}"
+                    placeholder="{{ placeholder }}"
+                    {% if required %} required {% endif %}
+                >
+            </div>
+        </div>
+    {%- endmacro %}
 
-{% macro checkbox(name='', placeholder='...', id='', class='', required=True) -%}
-<div class="sparrow-checkbox {{ class }}">
-    <input
-        type="checkbox"
-        name="{{ name }}"
-        id="checkbox-remember"
-        {% if required %} required {% endif %}
-    >
-    <label for="checkbox-remember">
-        {{ caller() }}
-    </label>
-</div>
-{%- endmacro %}
+    {% macro select(name='', label=False, id='', class='', value='', placeholder='...', required=True, icon=False) -%}
+        <div class="sparrow-select {{ class }}">
+            {% if icon %}
+                <i class="fas fa-{{ icon }}"></i>
+            {% endif %}
+
+            {% if label %}
+                <label for="{{ id }}">{{ label }}</label>
+            {% endif %}
+
+            <select
+                id="{{ id }}"
+                {% if required %} required {% endif %}
+            >
+                <option value="" disabled selected hidden>{{ placeholder }}</option>
+                {{ caller () }}
+            </select>
+        </div>
+    {%- endmacro %}
+
+    {% macro checkbox(name='', placeholder='...', id='', class='', required=True) -%}
+        <div class="sparrow-checkbox {{ class }}">
+            <input
+                type="checkbox"
+                name="{{ name }}"
+                id="checkbox-remember"
+                {% if required %} required {% endif %}
+            >
+            <label for="checkbox-remember">
+                {{ caller() }}
+            </label>
+        </div>
+    {%- endmacro %}
 
 
-{% macro button(name='', priority='primary', type='submit', id='', class='') -%}
-<button type="{{ type }}" id="{{ id }}" class="sparrow-button sparrow-{{ priority }} {{ class }}"> {{ caller() }}</button>
-{%- endmacro %}
+    {% macro button(name='', priority='primary', type='submit', id='', class='') -%}
+        <button
+            type="{{ type }}"
+            id="{{ id }}"
+            class="sparrow-button sparrow-{{ priority }} {{ class }}"
+        >
+            {# Allow macro caller to input more info in button #}
+            {{ caller() }}
+        </button>
+    {%- endmacro %}
 
 
-<div class="dialog">
-    <!-- form_submit_endpoint should be provided by the integration -->
-    <form
-        class="river"
-        method="POST"
-        autocomplete="on"
-        action={{ form_submit_endpoint|default("/login", true) }}>
+    <!-- Content -->
+    {% if path == "start" %}
+        <div class="login-heading">
+            <h1>Software enabling companies to provide employees with leave</h1>
+        </div>
+    {% endif %}
+
+    <div class="dialog">
+        {% set form_class = "river" %}
 
         {% if path == "login" %}
-        <h2 class="dialog-title">Log in</h2>
 
-        {{ input(name='username', placeholder='Username', icon='user')  }}
-        {{ input(type='password', name='password', placeholder='Password', icon='key')  }}
+            {{ title(text='Log In')  }}
 
-        <div class="row remember-form">
-            {% call checkbox(name="remember", class="left") %}
-                Remember me
-            {% endcall %}
-            <a class="right" href="#">Forgot Password?</a>
-        </div>
+            <form
+                class="{{ form_class }}"
+                method="POST"
+                autocomplete="on"
+                action={{ form_submit_endpoint|default("/login", true) }}>
 
-        {% call button(class='row') %}
-        Log In
-        {% endcall %}
+                {{ input(name='email', placeholder='Email', icon='envelope')  }}
 
-        <span class="dialog-footnote">
-            Don't have an account? <a href="#">Sign Up</a>
-        </span>
+                {{ input(type='password', name='password', placeholder='Password', icon='key')  }}
+
+                <div class="remember-form">
+                    {% call checkbox(name="remember") %}
+                        Remember me
+                    {% endcall %}
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                {% call button(class="w-100") %}
+                    Log In
+                {% endcall %}
+
+                <span class="dialog-footnote d-flex justify-content-center">
+                    Don't have an account? <a href="#">Sign Up</a>
+                </span>
+            </form>
 
         {% elif path == "signup" %}
-        <h2 class="dialog-title">Create your account</h2>
 
-        {{ input(type='text', name='username', placeholder='Username', icon='user') }}
+            {{ title(text='Create your account')  }}
 
-        {{ input(type='email', name='email', placeholder='Email', icon='envelope') }}
+            <form
+                class="{{ form_class }}"
+                method="POST"
+                autocomplete="on"
+                action="/signup">
 
-        {{ input(type='password', name='password', placeholder='Password', icon='key') }}
+                {{ input(type='email', name='email', placeholder='Email', icon='envelope') }}
 
-        {{ input(type='password', name='confirm_password', placeholder='Confirm Password', icon='key') }}
-        {% call select(name='status', placeholder='Status', required=True, icon='user') %}
-            <option value="full-time">Full Time</option>
-            <option value="contractor">Contractor</option>
-        {% endcall %}
+                {{ input(type='password', name='password', placeholder='Password', icon='key') }}
 
-        <div class="row remember-form">
-            {% call checkbox(name="remember") %}
-                I agree to the <a href="">Terms of Service</a>
-            {% endcall %}
-        </div>
+                {{ input(type='password', name='confirm_password', placeholder='Confirm Password', icon='key') }}
+                {% call select(name='status', placeholder='Status', required=True, icon='user') %}
+                    <option value="full-time">Full Time</option>
+                    <option value="contractor">Contractor</option>
+                {% endcall %}
 
-        {% call button(class='row') %}
-        Register
-        {% endcall %}
+                <div class="remember-form justify-content-center">
+                    {% call checkbox(name="remember") %}
+                        I agree to the <a href="">Terms of Service</a>
+                    {% endcall %}
+                </div>
 
-        <span class="row dialog-footnote">
-            Already have an account? <a href="#">Log In</a>
-        </span>
+                {% call button(class="w-100") %}
+                    Register
+                {% endcall %}
+
+                <span class="dialog-footnote d-flex justify-content-center">
+                    Already have an account? <a href="#">Log In</a>
+                </span>
+
+            </form>
         {% elif path == "select" %}
-        <h2 class="dialog-title">Access to:</h2>
 
-        <a href="/login">
-            {% call button(type='button', class='row', priority='secondary') %}
-            Employee Dashboard
-            {% endcall %}
-        </a>
-        <a href="login">
-            {% call button(type='button', class='row') %}
-            Admin Dashboard
-            {% endcall %}
-        </a>
+            {{ title(text='Access to:')  }}
 
+            <form
+                class="{{ form_class }}"
+                method="POST"
+                autocomplete="on"
+                action={{ form_submit_endpoint|default("/login", true) }}>
+
+                <a href="/login" class="sparrow-button sparrow-secondary">
+                    Employee Dashboard
+                </a>
+                <a href="login" class="sparrow-button sparrow-primary">
+                    Admin Dashboard
+                </a>
+            </form>
         {% elif path == "forgot_pass" %}
-        <h2 class="dialog-title">Forgot Password?</h2>
 
-        <span class="dialog-subtitle">Enter the username you use and you will receive an e-mail containing a link for changing your password.</span>
+            {{ title(text='Forgot Password?')  }}
 
+            <span class="dialog-subtitle">Enter the e-mail you use and we will send you a link for changing your password.</span>
 
-        <div class="row sparrow-input">
-            <i class="fas fa-user"></i>
-            <input type="text" name="username" placeholder="Username" required/>
-        </div>
+            <form
+                class="{{ form_class }}"
+                method="POST"
+                autocomplete="on"
+                action={{ form_submit_endpoint|default("/login", true) }}>
 
-        <button type="submit" class="row sparrow-button sparrow-primary">Reset Password</button>
+                {{ input(name='email', placeholder='Email', icon='envelope')  }}
 
+                {% call button(class="w-100") %}
+                    Reset Password
+                {% endcall %}
+
+            </form>
         {% elif path == "reset_pass" %}
-        <h2 class="dialog-title">Change your password:</h2>
 
-        <!-- TODO: client side validation password match -->
-        <div class="row sparrow-input">
-            <i class="fas fa-user"></i>
-            <input type="text" name="username" placeholder="Username" required/>
-        </div>
+            {{ title(text='Change your password:')  }}
 
-        <div class="row sparrow-input">
-            <i class="fas fa-key"></i>
-            <input type="password" id="password" name="password" placeholder="Password" value="" required />
-        </div>
+            <form
+                class="{{ form_class }}"
+                method="POST"
+                autocomplete="on"
+                action={{ form_submit_endpoint|default("/login", true) }}>
 
-        <div class="row sparrow-input">
-            <i class="fas fa-key"></i>
-            <input type="password" id="confirm_password" name="password" placeholder="Confirm Password" value="" required />
-        </div>
+                <!-- TODO: client side validation password match -->
+                {{ input(name='email', placeholder='Email', icon='envelope')  }}
 
-        <button type="submit" class="row sparrow-button sparrow-primary">Reset Password</button>
+                {{ input(type='password', name='password', placeholder='Password', icon='key') }}
+                {{ input(type='password', name='confirm_password', placeholder='Confirm Password', icon='key') }}
+
+                {% call button(class="w-100") %}
+                    Reset Password
+                {% endcall %}
+
+            </form>
 
         {% else %}
-        <h2 class="dialog-title">Let's get started now</h2>
 
-        <span class="dialog-subtitle">Or <a href="#">create</a> an account if not registered yet</span>
-        <button type="submit" class="row sparrow-button sparrow-primary">Log In</button>
+            {{ title(text="Let's get started now")  }}
 
+            <span class="dialog-subtitle">Or <a href="/signup">create</a> an account if not registered yet</span>
+
+            <a href="/login" class="sparrow-button sparrow-primary w-50">
+                Log In
+            </a>
         {% endif %}
-
-
-    </form>
-
-</div>
+    </div>
 {% endblock %}

@@ -5,82 +5,79 @@
     background-size: cover;
 }
 
-// .login-form {
-//     padding-bottom: 64px;
-//     display: flex;
-//     overflow-y: auto;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-// }
+.login-form {
+    padding-bottom: 64px;
+    overflow-y: auto;
+}
 
 // // Login Form
-
 .sparrow-logo {
     margin-left: 32px;
     margin-top: 32px;
     align-self: flex-start;
 }
 
-// .login-heading {
-//     margin-top: 48px;
-//     margin-bottom: 48px;
+.login-heading {
+    margin-top: 48px;
+    margin-bottom: 48px;
+    width: 60%;
 
-//     h1 {
-//         margin: auto;
-//         font-weight: lighter;
-//         width: 60%;
-//         text-align: center;
-//         font-size: @font-size-24;
-//         line-height: 32px;
-//     }
-// }
+    h1 {
+        margin: auto;
+        font-weight: lighter;
+        text-align: center;
+        font-size: @font-size-24;
+        line-height: @font-size-30;
+    }
+}
 
-// .dialog {
+.dialog {
+    .floating-shadow();
+    border-radius: 15px;
 
-//     // Arbitrarily chosen for very big screens
-//     max-width: 500px;
-//     width: 60%;
+    // Arbitrarily chosen for very big screens
+    max-width: 500px;
+    width: 60%;
+    font-weight: 300;
+    font-size: @font-size-12;
 
-//     margin: auto;
-//     padding: 32px;
-//     padding-top: 48px;
-//     border-radius: 15px;
-//     font-weight: 300;
-//     font-size: @font-size-12;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-//     .floating-shadow();
+    margin: auto;
 
-//     @space-between-elements: 24px;
+    padding: 48px 32px;
 
-//     // This is the middle strip where content lives and has a max width
-//     .river {
-//         display: flex;
-//         flex-direction: column;
-//         width: 60%;
-//         max-width: 250px;
-//         margin: auto;
-//         text-align: center;
-//     }
+    @space-between-elements: 24px;
 
-//     &-title {
-//         margin: 16px 0;
-//         font-size: @font-size-24;
-//         font-weight: normal;
-//     }
+    // This is the middle strip where content lives and has a max width
+    .river {
+        width: 60%;
+        max-width: 300px;
+        margin: 16px auto;
+    }
 
-//     &-subtitle {
-//         margin-top: 16px;
-//         margin-bottom: 40px;
-//         font-size: @font-size-14;
-//     }
+    &-title {
+        margin: 16px 0;
+        font-size: @font-size-24;
+        font-weight: normal;
+    }
 
-//     .row {
-//         box-sizing: border-box;
-//         width: 100%;
-//         margin: (@space-between-elements / 2) auto;
-//     }
+    &-subtitle {
+        margin: 16px 0;
+        text-align: center;
+        font-size: @font-size-14;
+    }
 
-//     &-footnote {
-//     }
-// }
+    .remember-form {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+
+    &-footnote {
+    }
+}
