@@ -6,10 +6,6 @@
     box-sizing: border-box;
     background: @color-gray-dark;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     // Sidebar
     .sparrow-logo {
         // center the logo in the sidebar
@@ -17,10 +13,6 @@
     }
 
     &-profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
         margin: 48px 0;
 
         &-name {
@@ -61,29 +53,17 @@
 }
 
 .content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-
     background: @color-gray-light;
 
     header {
         border-bottom: 1px @color-gray-border solid;
-
         padding: 40px 48px;
         background: white;
-        display: flex;
-        justify-content: space-between;
-
         font-size: @font-size-22;
         color: @color-primary-cta;
     }
 
     main {
-        // Setting height of flex so main has a height
-        flex: 1;
-        // Setting main to be a flexbox so that the wrapper extends full height within our margins;
-        display: flex;
 
         // Only have margins and a floating style when screen is big enough
         .media-desktop({

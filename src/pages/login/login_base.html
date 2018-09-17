@@ -6,15 +6,18 @@
 {% endblock %}
 
 {% block body %}
-<div class="row h-100">
-    <main class="login-form col-lg col-xl h-100">
-        <div class="row flex-column flex-nowrap align-items-center justify-content-center h-100">
-            {{ macros.sparrow_logo() }}
-            {% block content %}{% endblock %}
-        </div>
-    </main>
 
-    <div class="col-xl hero-image-container" />
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <main class="login-form col-lg col-xl h-100">
+            <div class="row flex-column flex-nowrap align-items-center justify-content-center h-100">
+                {{ macros.sparrow_logo() }}
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+
+        <div class="col-xl hero-image-container" />
+    </div>
 </div>
 {% endblock %}
 
