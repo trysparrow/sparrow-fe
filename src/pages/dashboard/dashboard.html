@@ -3,11 +3,20 @@
 {% import "pages/base/macros.html" as macros %}
 {% extends 'pages/dashboard/dashboard_base.html' %}
 
-{% macro employee_row() %}
-    <div class="row p-3 employee-table employee-table-row align-items-center">
+{% macro employee_row(
+    name="Diego Berrocal",
+    user_id="0",
+    is_new=False,
+    start_date="01/01/2019",
+    end_date="01/02/2019",
+    estimated_pay="$ 1,219",
+    company_pay="$ 522"
+    )
+%}
+    <div class="row p-3 employee-table employee-table-row align-items-center shadow-sm">
 
         <div class="col-1 checkbox">
-            {{ macros.checkbox(id="select-all", name="select-all", required=False) }}
+            {{ macros.checkbox(id=user_id, name="select-all", required=False) }}
         </div>
 
         <div class="col employee-name">
@@ -17,31 +26,33 @@
                     width="70"
                     height="70"
                     src="https://0.gravatar.com/avatar/f5348e1061215cf50eb1682b5da444ea?s=400&d=mm"/>
-                Diego Berrocal Chinchay
+                {{ name }}
             </div>
-            <span class="new-suffix rounded">
-                New
-            </span>
+            {% if is_new %}
+                <span class="new-suffix rounded">
+                    New
+                </span>
+            {% endif %}
         </div>
 
         <!-- Leave Start Date -->
         <div class="col-2 text-center">
-            01/01/2019
+            {{ start_date }}
         </div>
 
         <!-- Leave End date -->
         <div class="col-2 text-center">
-            02/01/2019
+            {{ end_date }}
         </div>
 
         <!-- Estimated Pay -->
         <div class="col-2 text-center">
-            $ 1,219
+            {{ estimated_pay }}
         </div>
 
         <!-- Company Pay -->
         <div class="col-2 text-center">
-            $ 522
+            {{ company_pay }}
         </div>
     </div>
 {% endmacro %}
@@ -85,7 +96,7 @@
         <i class="fa fa-search"></i>
                     </button>
                 </span>
-        <input class="form-control py-2 border-primary border-left-0 border" type="search" placeholder="search" id="search-input">
+        <input class="form-control py-2 border-primary border-left-0 border" type="search" placeholder="Search" id="search-input">
             </div>
         </div>
 
@@ -121,13 +132,8 @@
         </div>
     </div>
 
-    {{ employee_row() }}
-    {{ employee_row() }}
-    {{ employee_row() }}
-    {{ employee_row() }}
-    {{ employee_row() }}
-    {{ employee_row() }}
-    {{ employee_row() }}
-    {{ employee_row() }}
+    {% for row in range(1,10) %}
+        {{ employee_row(user_id=row, is_new=loop.cycle(True, False)) }}
+    {% endfor %}
 
 {% endblock %}
