@@ -2,10 +2,29 @@ import url from './dashboard.less';
 
 window.addEventListener('load', () => {
     const selectAll = document.querySelector('#select-all');
-    console.log({ selectAll });
 
     const checkboxes = document.querySelectorAll('.employee-table-row input[type="checkbox"]');
     selectAll.addEventListener('click', () => {
         checkboxes.forEach(checkbox => checkbox.checked = selectAll.checked);
     });
+
+    const handleEmployeeRowClick = event => {
+        const checkbox = event.currentTarget.querySelector('input[type="checkbox"]');
+        checkbox.checked = !checkbox.checked;
+    };
+
+    const handleCheckboxesChange = event => {
+        let allSelected = true;
+        checkboxes.forEach(checkbox => {
+            if (!checkbox.checked) allSelected = false;
+        });
+
+        selectAll.checked = allSelected;
+    };
+
+    document.querySelectorAll('.employee-table-row')
+        .forEach(el => {
+            el.addEventListener('click', handleEmployeeRowClick);
+            el.querySelector('input[type="checkbox"]').addEventListener('change', handleCheckboxesChange);
+        });
 });
