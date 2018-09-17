@@ -41,7 +41,11 @@
         {{ macros.sparrow_logo() }}
 
         <div class="sidebar-profile d-flex flex-column align-items-center">
-            <img alt="your profile picture" class="circle-with-border" src="https://0.gravatar.com/avatar/f5348e1061215cf50eb1682b5da444ea?s=400&d=mm"/>
+            <img alt="your profile picture"
+                class="profile-img rounded-circle border border-3 border-primary"
+                width="100"
+                height="100"
+                src="https://0.gravatar.com/avatar/f5348e1061215cf50eb1682b5da444ea?s=400&d=mm"/>
             <span class="sidebar-profile-name">{{ name }}</span>
         </div>
 

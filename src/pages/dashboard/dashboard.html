@@ -48,8 +48,8 @@
 
     </div>
 
-    <div class="row employee-table employee-table-header">
-        <div class="col-auto checkbox">
+    <div class="row p-3 employee-table employee-table-header">
+        <div class="col-1 checkbox">
             {{ macros.checkbox(id="select-all", name="select-all", required=False) }}
         </div>
 
@@ -58,28 +58,65 @@
         </div>
 
         <!-- Leave Start Date -->
-        <div class="col-auto">
+        <div class="col-2 text-center">
             Leave Start
         </div>
 
         <!-- Leave End date -->
-        <div class="col-auto">
+        <div class="col-2 text-center">
             Leave End
         </div>
 
         <!-- Estimated Pay -->
-        <div class="col-auto">
+        <div class="col-2 text-center">
             Estimated Pay
         </div>
 
         <!-- Company Pay -->
-        <div class="col-auto">
+        <div class="col-2 text-center">
             Company Pay
         </div>
-
     </div>
 
-    <div class="row employee-table employee-table-row">
+    <div class="row p-3 employee-table employee-table-row align-items-center">
+
+        <div class="col-1 checkbox">
+            {{ macros.checkbox(id="select-all", name="select-all", required=False) }}
+        </div>
+
+        <div class="col employee-name">
+            <div class="d-flex align-items-center">
+                <img alt="your profile picture"
+                    class="profile-img rounded-circle border border-3 border-primary"
+                    width="70"
+                    height="70"
+                    src="https://0.gravatar.com/avatar/f5348e1061215cf50eb1682b5da444ea?s=400&d=mm"/>
+                Diego Berrocal Chinchay
+            </div>
+            <span class="new-suffix rounded">
+                New
+            </span>
+        </div>
+
+        <!-- Leave Start Date -->
+        <div class="col-2 text-center">
+            01/01/2019
+        </div>
+
+        <!-- Leave End date -->
+        <div class="col-2 text-center">
+            02/01/2019
+        </div>
+
+        <!-- Estimated Pay -->
+        <div class="col-2 text-center">
+            $ 1,219
+        </div>
+
+        <!-- Company Pay -->
+        <div class="col-2 text-center">
+            $ 522
+        </div>
     </div>
 
 {% endblock %}

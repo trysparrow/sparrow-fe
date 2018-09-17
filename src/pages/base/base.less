@@ -4,6 +4,7 @@
 @color-gray-dark: #F3F3F3;
 @color-gray-light: #FBFBFB;
 @color-gray-border: #DADADA;
+@color-gray-darker: #F9F9F9;
 
 @bg-color: #A8E0EF;
 
@@ -43,12 +44,9 @@ body {
     color: @color-default;
 }
 
-.left {
-    float: left;
-}
 
-.right {
-    float: right;
+.border-3 {
+    border-width: 3px !important;
 }
 
 .floating-shadow() {
@@ -189,13 +187,6 @@ select.sparrow-select {
 .sparrow-logo {
     font-size: @font-size-24;
     color: #415A6B;
-}
-
-.circle-with-border {
-    .square(100px);
-    box-sizing: border-box;
-    border: 3px @color-primary-cta solid;
-    border-radius: 50%;
 }
 
 .alert.alert-primary {
