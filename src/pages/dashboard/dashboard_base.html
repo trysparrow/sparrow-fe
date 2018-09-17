@@ -22,51 +22,59 @@
 
 {% block body %}
 
-<div class="sidebar">
+<div class="d-flex h-100">
+    <div class="sidebar d-flex flex-column align-items-center">
 
-    {{ macros.sparrow_logo() }}
+        {{ macros.sparrow_logo() }}
 
-    <div class="sidebar-profile">
-        <img alt="your profile picture" class="circle-with-border" src="https://0.gravatar.com/avatar/f5348e1061215cf50eb1682b5da444ea?s=400&d=mm"/>
-        <span class="sidebar-profile-name">Diego Berrocal Chinchay</span>
+        <div class="sidebar-profile d-flex flex-column align-items-center">
+            <img alt="your profile picture" class="circle-with-border" src="https://0.gravatar.com/avatar/f5348e1061215cf50eb1682b5da444ea?s=400&d=mm"/>
+            <span class="sidebar-profile-name">Diego Berrocal Chinchay</span>
+        </div>
+
+
+        <!-- TODO: For the person transforming this HTML into a template.  -->
+        <nav class="sidebar-destinations">
+            <ol>
+                {{ sidebar_item(item_page='dashboard', text='Dashboard', icon='chart-pie') }}
+                {{ sidebar_item(item_page='tasks', text='Tasks', icon='tasks') }}
+
+                {{ sidebar_item(item_page='forms', text='Forms', icon='file-signature') }}
+
+                {{ sidebar_item(item_page='faq', text='FAQ', icon='question') }}
+
+                {{ sidebar_item(item_page='profile', text='Profile', icon='user-edit') }}
+            </ol>
+        </nav>
+
     </div>
 
+    <div class="content d-flex flex-column flex-grow-1">
+        <header class="d-flex justify-content-between">
+            <div class="header-title">
+                <i class="fas fa-chart-pie"></i>
+                Dashboard
+            </div>
 
-    <!-- TODO: For the person transforming this HTML into a template.  -->
-    <nav class="sidebar-destinations">
-        <ol>
-            {{ sidebar_item(item_page='dashboard', text='Dashboard', icon='chart-pie') }}
-            {{ sidebar_item(item_page='tasks', text='Tasks', icon='tasks') }}
+            <div class="header-action">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </header>
 
-            {{ sidebar_item(item_page='forms', text='Forms', icon='file-signature') }}
+        <!--
+             Setting height of flex so main has a height.
+             Setting main to be a flexbox so that the wrapper extends full height within our margins
+        -->
+        <main class="d-flex flex-grow-1">
+            <div class="wrapper">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
 
-            {{ sidebar_item(item_page='faq', text='FAQ', icon='question') }}
-
-            {{ sidebar_item(item_page='profile', text='Profile', icon='user-edit') }}
-        </ol>
-    </nav>
-
-</div>
-
-<div class="content">
-    <header>
-        <div class="header-title">
-            <i class="fas fa-chart-pie"></i>
-            Dashboard
-        </div>
-
-        <div class="header-action">
-            <a href="/logout">
-                <i class="fas fa-sign-out-alt"></i>
-                Logout
-            </a>
-        </div>
-    </header>
-    <main>
-        <div class="wrapper">
-            {% block content %}{% endblock %}
-        </div>
-    </main>
 </div>
 {% endblock %}
 

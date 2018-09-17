@@ -34,15 +34,13 @@ a {
     }
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Source Sans Pro', sans-serif;
     color: @color-default;
-}
-
-// Common container
-.container {
-    display: flex;
-    height: 100%;
 }
 
 .left {
@@ -77,13 +75,18 @@ body {
 }
 
 // Buttons
-button.sparrow-button {
-    background: #fff;
-    color: @color-primary-cta;
-    border-color: @color-primary-cta;
+.sparrow-button {
+
+    display: block;
     border-radius: 5px;
     padding: 8px;
     font-size: @font-size-18;
+    margin-bottom: 1rem;
+    border: 1px @color-primary-cta solid;
+    text-align: center;
+
+    background: #fff;
+    color: @color-primary-cta;
 
     &.sparrow-primary {
         background: @color-primary-cta;
@@ -91,13 +94,33 @@ button.sparrow-button {
     }
 }
 
-// General Form Inputs
-.sparrow-input,
+// // General Form Inputs
+
+.form-group .input-group {
+    color: @color-primary-cta;
+
+    .input-group-text {
+        background: none;
+        border: 1px @color-primary-cta solid;
+        border-right: 0;
+    }
+    .form-control {
+        border: 1px @color-primary-cta solid;
+        border-left: 0;
+    }
+
+    i,
+    ::placeholder {
+        color: @color-primary-cta
+    }
+}
+
 .sparrow-select {
     font-size: @font-size-16;
     border: 1px @color-primary-cta solid;
     border-radius: 5px;
     padding: 8px;
+    margin-bottom: 1rem;
 
     color: @color-primary-cta;
 
@@ -105,7 +128,7 @@ button.sparrow-button {
     align-items: center;
 
 
-    i {
+    label, i {
         line-height: 15px;
         padding-right: 8px;
     }
@@ -160,24 +183,11 @@ select.sparrow-select {
     input[type="checkbox"]:focus + label::before {
         outline: currentColor auto 5px;
     }
-
 }
-
 
 .sparrow-logo {
     font-size: @font-size-24;
     color: #415A6B;
-
-    span {
-        position: relative;
-        left: -8px;
-        top: -19px;
-    }
-
-    img {
-        width: 60px;
-        height: 60px;
-    }
 }
 
 .circle-with-border {

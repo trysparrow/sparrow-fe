@@ -27,7 +27,7 @@ def login():
         return show_the_login_form(path)
 
 @app.route('/user/<path>', methods=['GET', 'POST'])
-def dashboard():
+def dashboard(path):
     return render_template("pages/dashboard/dashboard.html", page_title="Dashboard - Sparrow", page=path)
 
 if (environ.get('DEPLOY_ENV') == "DEV"):
