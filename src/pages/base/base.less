@@ -165,6 +165,7 @@ select.sparrow-select {
         &::before{
             margin-right: 8px;
             font-family: "Font Awesome 5 Free";
+            font-weight: normal;
             color: @color-primary-cta;
         }
     }
@@ -195,4 +196,44 @@ select.sparrow-select {
     box-sizing: border-box;
     border: 3px @color-primary-cta solid;
     border-radius: 50%;
+}
+
+.alert.alert-primary {
+    background: rgba(168, 224, 239, 0.65);
+    border: 0;
+    i {
+        padding-right: 16px;
+        color: white;
+    }
+}
+
+.dropdown {
+    &.show button {
+        background-color: @color-primary-cta;
+        border-color: @color-primary-cta;
+        color: white;
+    }
+
+    button {
+        background-color: white;
+        color: @color-primary-cta;
+        border-color: @color-primary-cta;
+
+        &:hover,
+        &:active {
+            // TODO: Customize Bootstrap primary colors to avoid this !important deal
+            background-color: @color-primary-cta !important;
+            border-color: @color-primary-cta !important;
+            color: white !important;
+        }
+
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+}
+
+.border-primary {
+    // TODO: Override the border color in Boostrap itself
+    border-color: @color-primary-cta !important;
 }
