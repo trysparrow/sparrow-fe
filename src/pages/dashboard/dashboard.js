@@ -11,9 +11,10 @@ window.addEventListener('load', () => {
     const handleEmployeeRowClick = event => {
         const checkbox = event.currentTarget.querySelector('input[type="checkbox"]');
         checkbox.checked = !checkbox.checked;
+        handleCheckboxesChange();
     };
 
-    const handleCheckboxesChange = event => {
+    const handleCheckboxesChange = () => {
         let allSelected = true;
         checkboxes.forEach(checkbox => {
             if (!checkbox.checked) allSelected = false;
