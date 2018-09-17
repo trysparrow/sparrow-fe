@@ -6,3 +6,73 @@
     <span class="logo-sparrow">Sparrow</span>
 </div>
 {%- endmacro %}
+
+{% macro input(name='', label=False, id='', class='', value='', placeholder='...', type='text', required=True, icon=False) -%}
+    <div class="form-group">
+        <div class="input-group">
+            {% if icon %}
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-{{ icon }}"></i>
+                    </span>
+                </div>
+            {% endif %}
+
+            <input
+                type="{{ type }}"
+                class="form-control"
+                name="{{ name }}"
+                id="{{ id }}"
+                placeholder="{{ placeholder }}"
+                {% if required %} required {% endif %}
+            >
+        </div>
+    </div>
+{%- endmacro %}
+
+{% macro select(name='', label=False, id='', class='', value='', placeholder='...', required=True, icon=False) -%}
+    <div class="sparrow-select {{ class }}">
+        {% if icon %}
+            <i class="fas fa-{{ icon }}"></i>
+        {% endif %}
+
+        {% if label %}
+            <label for="{{ id }}">{{ label }}</label>
+        {% endif %}
+
+        <select
+            id="{{ id }}"
+            {% if required %} required {% endif %}
+        >
+            <option value="" disabled selected hidden>{{ placeholder }}</option>
+            {{ caller () }}
+        </select>
+    </div>
+{%- endmacro %}
+
+{% macro checkbox(name='', id='checkbox-input', class='', required=True) -%}
+    <div class="sparrow-checkbox {{ class }}">
+        <input
+            type="checkbox"
+            name="{{ name }}"
+            id="{{ id }}"
+            {% if required %} required {% endif %}
+        >
+        <label for="{{ id }}">
+            {% if caller %}
+                {{ caller() }}
+            {% endif %}
+        </label>
+    </div>
+{%- endmacro %}
+
+{% macro button(name='', priority='primary', type='submit', id='', class='') -%}
+    <button
+        type="{{ type }}"
+        id="{{ id }}"
+        class="sparrow-button sparrow-{{ priority }} {{ class }}"
+    >
+        {# Allow macro caller to input more info in button #}
+        {{ caller() }}
+    </button>
+{%- endmacro %}

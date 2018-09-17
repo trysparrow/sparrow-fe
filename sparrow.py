@@ -28,7 +28,7 @@ def login():
 
 @app.route('/user/<path>', methods=['GET', 'POST'])
 def dashboard(path):
-    return render_template("pages/dashboard/dashboard.html", page_title="Dashboard - Sparrow", page=path)
+    return render_template("pages/dashboard/dashboard.html", page_title="Dashboard - Sparrow", page=path, name='Diego Berrocal Chinchay', notification_text='Hello Coudfire!  You have some tasks due.')
 
 if (environ.get('DEPLOY_ENV') == "DEV"):
     server = Server(app.wsgi_app)

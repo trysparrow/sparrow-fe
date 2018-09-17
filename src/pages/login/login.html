@@ -1,6 +1,7 @@
 {# -*- engine: django -*- #}
 
 {% extends 'pages/login/login_base.html' %}
+{% import "pages/base/macros.html" as macros %}
 
 {% block content %}
 
@@ -8,75 +9,6 @@
         <h2 class="dialog-title">
             {{ text }}
         </h2>
-    {%- endmacro %}
-
-    {% macro input(name='', label=False, id='', class='', value='', placeholder='...', type='text', required=True, icon=False) -%}
-        <div class="form-group">
-            <div class="input-group">
-                {% if icon %}
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-{{ icon }}"></i>
-                        </span>
-                    </div>
-                {% endif %}
-
-                <input
-                    type="{{ type }}"
-                    class="form-control"
-                    name="{{ name }}"
-                    id="{{ id }}"
-                    placeholder="{{ placeholder }}"
-                    {% if required %} required {% endif %}
-                >
-            </div>
-        </div>
-    {%- endmacro %}
-
-    {% macro select(name='', label=False, id='', class='', value='', placeholder='...', required=True, icon=False) -%}
-        <div class="sparrow-select {{ class }}">
-            {% if icon %}
-                <i class="fas fa-{{ icon }}"></i>
-            {% endif %}
-
-            {% if label %}
-                <label for="{{ id }}">{{ label }}</label>
-            {% endif %}
-
-            <select
-                id="{{ id }}"
-                {% if required %} required {% endif %}
-            >
-                <option value="" disabled selected hidden>{{ placeholder }}</option>
-                {{ caller () }}
-            </select>
-        </div>
-    {%- endmacro %}
-
-    {% macro checkbox(name='', placeholder='...', id='', class='', required=True) -%}
-        <div class="sparrow-checkbox {{ class }}">
-            <input
-                type="checkbox"
-                name="{{ name }}"
-                id="checkbox-remember"
-                {% if required %} required {% endif %}
-            >
-            <label for="checkbox-remember">
-                {{ caller() }}
-            </label>
-        </div>
-    {%- endmacro %}
-
-
-    {% macro button(name='', priority='primary', type='submit', id='', class='') -%}
-        <button
-            type="{{ type }}"
-            id="{{ id }}"
-            class="sparrow-button sparrow-{{ priority }} {{ class }}"
-        >
-            {# Allow macro caller to input more info in button #}
-            {{ caller() }}
-        </button>
     {%- endmacro %}
 
 
@@ -100,18 +32,18 @@
                 autocomplete="on"
                 action={{ form_submit_endpoint|default("/login", true) }}>
 
-                {{ input(name='email', placeholder='Email', icon='envelope')  }}
+                {{ macros.input(type='email', name='email', placeholder='Email', icon='envelope')  }}
 
-                {{ input(type='password', name='password', placeholder='Password', icon='key')  }}
+                {{ macros.input(type='password', name='password', placeholder='Password', icon='key')  }}
 
                 <div class="remember-form">
-                    {% call checkbox(name="remember") %}
+                    {% call macros.checkbox(name="remember") %}
                         Remember me
                     {% endcall %}
                     <a href="#">Forgot Password?</a>
                 </div>
 
-                {% call button(class="w-100") %}
+                {% call macros.button(class="w-100") %}
                     Log In
                 {% endcall %}
 
@@ -130,23 +62,23 @@
                 autocomplete="on"
                 action="/signup">
 
-                {{ input(type='email', name='email', placeholder='Email', icon='envelope') }}
+                {{ macros.input(type='email', name='email', placeholder='Email', icon='envelope') }}
 
-                {{ input(type='password', name='password', placeholder='Password', icon='key') }}
+                {{ macros.input(type='password', name='password', placeholder='Password', icon='key') }}
 
-                {{ input(type='password', name='confirm_password', placeholder='Confirm Password', icon='key') }}
-                {% call select(name='status', placeholder='Status', required=True, icon='user') %}
+                {{ macros.input(type='password', name='confirm_password', placeholder='Confirm Password', icon='key') }}
+                {% call macros.select(name='status', placeholder='Status', required=True, icon='user') %}
                     <option value="full-time">Full Time</option>
                     <option value="contractor">Contractor</option>
                 {% endcall %}
 
                 <div class="remember-form justify-content-center">
-                    {% call checkbox(name="remember") %}
+                    {% call macros.checkbox(name="remember") %}
                         I agree to the <a href="">Terms of Service</a>
                     {% endcall %}
                 </div>
 
-                {% call button(class="w-100") %}
+                {% call macros.button(class="w-100") %}
                     Register
                 {% endcall %}
 
@@ -184,9 +116,9 @@
                 autocomplete="on"
                 action={{ form_submit_endpoint|default("/login", true) }}>
 
-                {{ input(name='email', placeholder='Email', icon='envelope')  }}
+                {{ macros.input(type='email', name='email', placeholder='Email', icon='envelope')  }}
 
-                {% call button(class="w-100") %}
+                {% call macros.button(class="w-100") %}
                     Reset Password
                 {% endcall %}
 
@@ -202,12 +134,12 @@
                 action={{ form_submit_endpoint|default("/login", true) }}>
 
                 <!-- TODO: client side validation password match -->
-                {{ input(name='email', placeholder='Email', icon='envelope')  }}
+                {{ macros.input(type='email', name='email', placeholder='Email', icon='envelope')  }}
 
-                {{ input(type='password', name='password', placeholder='Password', icon='key') }}
-                {{ input(type='password', name='confirm_password', placeholder='Confirm Password', icon='key') }}
+                {{ macros.input(type='password', name='password', placeholder='Password', icon='key') }}
+                {{ macros.input(type='password', name='confirm_password', placeholder='Confirm Password', icon='key') }}
 
-                {% call button(class="w-100") %}
+                {% call macros.button(class="w-100") %}
                     Reset Password
                 {% endcall %}
 

@@ -22,6 +22,17 @@
 </li>
 {%- endmacro %}
 
+{% macro notification(text='...', id='') %}
+    <!-- Use JS to listen to when this alert is dismissed -->
+    <div id="{{ id }}" class="alert alert-primary alert-dismissible fade show" role="alert">
+        <i class="fas fa-bell"></i>
+        {{ text }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+{% endmacro %}
+
 {% block body %}
 
 <div class="d-flex h-100">
@@ -31,7 +42,7 @@
 
         <div class="sidebar-profile d-flex flex-column align-items-center">
             <img alt="your profile picture" class="circle-with-border" src="https://0.gravatar.com/avatar/f5348e1061215cf50eb1682b5da444ea?s=400&d=mm"/>
-            <span class="sidebar-profile-name">Diego Berrocal Chinchay</span>
+            <span class="sidebar-profile-name">{{ name }}</span>
         </div>
 
 
@@ -54,8 +65,23 @@
     <div class="content d-flex flex-column flex-grow-1">
         <header class="d-flex justify-content-between">
             <div class="header-title">
-                <i class="fas fa-chart-pie"></i>
-                Dashboard
+
+                {% if page == "dashboard" %}
+                    <i class="fas fa-chart-pie"></i>
+                    Dashboard
+                {% elif page == "tasks" %}
+                    <i class="fas fa-tasks"></i>
+                    Tasks
+                {% elif page == "forms" %}
+                    <i class="fas fa-file-signature"></i>
+                    Forms
+                {% elif page == "faq" %}
+                    <i class="fas fa-question"></i>
+                    Frequently Asked Questions
+                {% else %}
+                    <i class="fas fa-user-edit"></i>
+                    Profile
+                {% endif %}
             </div>
 
             <div class="header-action">
@@ -70,8 +96,15 @@
              Setting height of flex so main has a height.
              Setting main to be a flexbox so that the wrapper extends full height within our margins
         -->
-        <main class="d-flex flex-grow-1">
-            <div class="wrapper">
+        <main class="d-flex flex-column flex-grow-1">
+            <div class="wrapper container-fluid">
+                <div class="row">
+                    <div class="col">
+                        {% if notification_text %}
+                            {{ notification(notification_text) }}
+                        {% endif %}
+                    </div>
+                </div>
                 {% block content %}{% endblock %}
             </div>
         </main>

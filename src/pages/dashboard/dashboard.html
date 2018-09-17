@@ -1,9 +1,85 @@
 {# -*- engine: django -*- #}
 
+{% import "pages/base/macros.html" as macros %}
 {% extends 'pages/dashboard/dashboard_base.html' %}
 
 {% block content %}
 
-<h1> Le Dashboard </h1>
+    <div class="row dashboard-header">
+        <div class="col dashboard-title" >
+            <h2>Employee</h2>
+        </div>
+
+        <div class="col-auto">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Show All
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Show Some</a>
+                    <a class="dropdown-item" href="#">Show A Bit less</a>
+                    <a class="dropdown-item" href="#">Show another category</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More Actions
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action 1</a>
+                    <a class="dropdown-item" href="#">Action 2</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <div class="input-group search">
+                <span class="input-group-prepend">
+                    <button class="btn btn-outline-secondary border-primary border-right-0 border" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+                <input class="form-control py-2 border-primary border-left-0 border" type="search" placeholder="search" id="search-input">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row employee-table employee-table-header">
+        <div class="col-auto checkbox">
+            {{ macros.checkbox(id="select-all", name="select-all", required=False) }}
+        </div>
+
+        <div class="col name">
+            Employee Name
+        </div>
+
+        <!-- Leave Start Date -->
+        <div class="col-auto">
+            Leave Start
+        </div>
+
+        <!-- Leave End date -->
+        <div class="col-auto">
+            Leave End
+        </div>
+
+        <!-- Estimated Pay -->
+        <div class="col-auto">
+            Estimated Pay
+        </div>
+
+        <!-- Company Pay -->
+        <div class="col-auto">
+            Company Pay
+        </div>
+
+    </div>
+
+    <div class="row employee-table employee-table-row">
+    </div>
 
 {% endblock %}
