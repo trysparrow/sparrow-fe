@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from flask import Flask
 from flask import request
 from flask import render_template
@@ -30,7 +32,8 @@ def login():
 def dashboard(path):
     return render_template("pages/dashboard/dashboard.html", page_title="Dashboard - Sparrow", page=path, name='Diego Berrocal Chinchay', notification_text='Hello Coudfire!  You have some tasks due.')
 
-if (environ.get('DEPLOY_ENV') == "DEV"):
+if (environ.get('FLASK_ENV') == "DEVELOPMENT"):
+    app.debug = True
     server = Server(app.wsgi_app)
     server.watch('src/')
     server.serve()

@@ -6,7 +6,7 @@
     "scripts": {
         "watch": "webpack --watch",
         "build": "webpack",
-        "serve": "DEPLOY_ENV=DEV FLASK_DEBUG=1 FLASK_APP=sparrow.py flask run",
+        "serve": "FLASK_ENV=DEVELOPMENT FLASK_APP=sparrow.py flask run",
         "postinstall": "npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
