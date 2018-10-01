@@ -1,0 +1,93 @@
+@import "../base/base.less";
+
+.sidebar {
+    flex-basis: 224px;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    background: @color-gray-dark;
+
+    // Sidebar
+    .sparrow-logo {
+        // center the logo in the sidebar
+        width: fit-content;
+    }
+
+    &-profile {
+        margin: 48px 0;
+
+        &-name {
+            margin-top: 16px;
+            text-align: center
+        }
+    }
+
+    &-destinations {
+
+        ol {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+            padding: 12px 0px;
+        }
+
+        a {
+            i {
+                padding-right: 16px;
+            }
+
+            &:hover,
+            &:link,
+            &:visited,
+            &:active {
+                color: @color-default;
+
+                &.current {
+                    color: @color-primary-cta;
+                }
+            }
+        }
+    }
+}
+
+.content {
+    background: @color-gray-light;
+
+    header {
+        border-bottom: 1px @color-gray-border solid;
+        padding: 40px 48px;
+        background: white;
+        font-size: @font-size-22;
+        color: @color-primary-cta;
+
+        i {
+            padding-right: 16px;
+        }
+    }
+
+    main {
+
+        // Only have margins and a floating style when screen is big enough
+        .media-desktop({
+            margin: 32px;
+        });
+
+
+        .wrapper {
+            box-sizing: border-box;
+            padding: 24px 32px;
+
+            background: #ffffff;
+
+            border-radius: 5px;
+
+            overflow-y: scroll;
+
+            .media-desktop({
+                .floating-shadow();
+            });
+        }
+    }
+}
