@@ -59,6 +59,14 @@
 
 {% block content %}
 
+    {% if notification_text %}
+    <div class="row">
+        <div class="col">
+            {{ macros.notification(notification_text) }}
+        </div>
+    </div>
+    {% endif %}
+
     <div class="row dashboard-header">
         <div class="col dashboard-title" >
             <h2>Employee</h2>

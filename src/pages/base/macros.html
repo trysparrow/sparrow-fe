@@ -76,3 +76,15 @@
         {{ caller() }}
     </button>
 {%- endmacro %}
+
+
+{% macro notification(text='...', id='') -%}
+    <!-- Use JS to listen to when this alert is dismissed -->
+    <div id="{{ id }}" class="alert alert-primary alert-dismissible fade show" role="alert">
+        <i class="fas fa-bell"></i>
+        {{ text }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+{%- endmacro %}

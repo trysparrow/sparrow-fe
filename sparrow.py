@@ -28,9 +28,45 @@ def login():
     else:
         return show_the_login_form(path)
 
+
+def dashboard():
+    return render_template(
+        "pages/dashboard/dashboard.html",
+        page_title="Dashboard - Sparrow",
+        page='dashboard',
+        name='Diego Berrocal Chinchay',
+        notification_text='Hello Coudfire!  You have some tasks due.',
+    )
+
+def tasks():
+    pass
+
+def forms():
+    return render_template(
+        "pages/forms/forms.html",
+        page_title="Forms - Sparrow",
+        page='forms',
+        name='Diego Berrocal Chinchay',
+    )
+
+def faq():
+    pass
+
+def profile():
+    pass
+
+userMap = {
+    'dashboard': dashboard,
+    'tasks': tasks,
+    'forms': forms,
+    'faq': faq,
+    'profile': profile
+}
+
 @app.route('/user/<path>', methods=['GET', 'POST'])
-def dashboard(path):
-    return render_template("pages/dashboard/dashboard.html", page_title="Dashboard - Sparrow", page=path, name='Diego Berrocal Chinchay', notification_text='Hello Coudfire!  You have some tasks due.')
+def userHandler(path):
+    handler = userMap.get(path.lower(), 'dashboard')
+    return handler();
 
 if (environ.get('FLASK_ENV') == "DEVELOPMENT"):
     app.debug = True

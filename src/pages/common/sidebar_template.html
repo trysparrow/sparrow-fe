@@ -11,7 +11,7 @@
 
 {% macro sidebar_item(item_page='dashboard', text='Dashboard', icon='chart-pie') -%}
 <li>
-    <a href="/{{ item_page }}"
+    <a href="{{ item_page }}"
         {% if page == item_page %}
         class="current"
         {% endif %}
@@ -21,17 +21,6 @@
     </a>
 </li>
 {%- endmacro %}
-
-{% macro notification(text='...', id='') %}
-    <!-- Use JS to listen to when this alert is dismissed -->
-    <div id="{{ id }}" class="alert alert-primary alert-dismissible fade show" role="alert">
-        <i class="fas fa-bell"></i>
-        {{ text }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-{% endmacro %}
 
 {% block body %}
 
@@ -102,13 +91,6 @@
         -->
         <main class="d-flex flex-column flex-grow-1">
             <div class="wrapper container-fluid">
-                <div class="row">
-                    <div class="col">
-                        {% if notification_text %}
-                            {{ notification(notification_text) }}
-                        {% endif %}
-                    </div>
-                </div>
                 {% block content %}{% endblock %}
             </div>
         </main>
