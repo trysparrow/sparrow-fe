@@ -42,11 +42,22 @@ def tasks():
     pass
 
 def forms():
+    step_list=[
+        'Personal Information',
+        'Employer Information',
+        'Leave Information',
+        'Upload Files',
+        'Confirm',
+    ]
+
+    curr_step = request.args.get('step', default=1, type=int)
     return render_template(
         "pages/forms/forms.html",
         page_title="Forms - Sparrow",
         page='forms',
         name='Diego Berrocal Chinchay',
+        step_list=step_list,
+        curr_step=curr_step
     )
 
 def faq():
@@ -65,6 +76,7 @@ userMap = {
 
 @app.route('/user/<path>', methods=['GET', 'POST'])
 def userHandler(path):
+    # Switch statement in Python via dictionary
     handler = userMap.get(path.lower(), 'dashboard')
     return handler();
 

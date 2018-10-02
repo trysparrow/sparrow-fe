@@ -7,9 +7,23 @@
     <link href="/static/forms.css" rel="stylesheet"/>
 {% endblock %}
 
+{% macro completion(step_list=[], curr_step=1) -%}
+    <div class="le-container">
+        <ul id="progressbar" class="timeline">
+            {% for step in step_list %}
+                <li class="{{ 'active' if curr_step >= loop.index }}" >
+                    {{ step }}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{%- endmacro %}
+
 {% block content %}
+    {{ completion(step_list=step_list, curr_step=curr_step) }}
     <div class="col dashboard-title" >
-        <h2>Forms</h2>
+       <h2>Forms</h2>
     </div>
 {% endblock %}
 
