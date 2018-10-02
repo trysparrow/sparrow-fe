@@ -3,8 +3,16 @@
 {% import "pages/base/macros.html" as macros %}
 {% extends 'pages/common/sidebar_template.html' %}
 
+{% block header_styles %}
+    <link href="/static/forms.css" rel="stylesheet"/>
+{% endblock %}
+
 {% block content %}
     <div class="col dashboard-title" >
         <h2>Forms</h2>
     </div>
+{% endblock %}
+
+{% block footer_scripts %}
+    <script type="text/javascript" src="/static/forms.js"></script>
 {% endblock %}

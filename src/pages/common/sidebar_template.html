@@ -4,11 +4,6 @@
 {% import "pages/base/macros.html" as macros %}
 
 
-{% block header_styles %}
-<link href="/static/dashboard.css" rel="stylesheet"/>
-{% endblock %}
-
-
 {% macro sidebar_item(item_page='dashboard', text='Dashboard', icon='chart-pie') -%}
 <li>
     <a href="{{ item_page }}"
@@ -97,8 +92,4 @@
     </div>
 
 </div>
-{% endblock %}
-
-{% block footer_scripts %}
-<script type="text/javascript" src="/static/dashboard.js"></script>
 {% endblock %}

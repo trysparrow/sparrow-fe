@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         login: './src/pages/login/login.js',
         dashboard: './src/pages/dashboard/dashboard.js',
+        forms: './src/pages/forms/forms.js',
     },
     output: {
         filename: '[name].js',

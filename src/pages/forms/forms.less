@@ -1,0 +1,47 @@
+@import "../common/sidebar_template.less";
+
+.timeline {
+    ol& {
+        list-style: none;
+    }
+
+    li {
+        background-color: red;
+        color: white;
+        position: relative;
+
+        .step-progress {
+            .step-bar {
+                z-index: 1;
+                background-color: #4EC1DF;
+                content: " ";
+                position: absolute;
+                top: 15px;
+                left: 0;
+                right: 0;
+                height: 10px;
+            }
+
+            .step-index {
+                border-radius: 50%;
+                background-color: #4EC1DF;
+                font-size: @font-size-20;
+                line-height: 40px;
+                text-align: center;
+                .square(40px);
+                z-index: 10;
+                position: relative;
+            }
+        }
+
+        &.timeline {
+            &-past {
+                background-color: blue;
+            }
+
+            &-current {
+                background-color: yellow;
+            }
+        }
+    }
+ }
