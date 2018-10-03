@@ -8,22 +8,129 @@
 {% endblock %}
 
 {% macro completion(step_list=[], curr_step=1) -%}
-    <div class="le-container">
-        <ul id="progressbar" class="timeline">
+        <ul class="timeline row">
             {% for step in step_list %}
-                <li class="{{ 'active' if curr_step >= loop.index }}" >
+                <li class="col {{ 'active' if curr_step >= loop.index }}" >
                     {{ step }}
                 </li>
             {% endfor %}
         </ul>
+{%- endmacro %}
 
+
+{% macro address_by_location(location) -%}
+    <div class="form-group">
+        <label for="{{ location }}-address">PO Box/ Number / Street / Apartment, Suite, Space</label>
+        <input type="text" class="form-control" id="{{ location }}-address" placeholder="1337 Main St, APT 1110">
+    </div>
+
+    <div class="form-group">
+        <label for="{{ location }}-city">City</label>
+        <input type="text" class="form-control" id="{{ location }}-city" placeholder="San Francisco">
+    </div>
+
+
+    <div class="form-group">
+        <label for="{{ location }}-state">State</label>
+        <input type="text" class="form-control" id="{{ location }}-state" placeholder="CA">
+    </div>
+
+    <div class="form-group">
+        <label for="{{ location }}-zipcode">Zip / Postal Code</label>
+        <input type="text" class="form-control" id="{{ location }}-zipcode" placeholder="94128">
+    </div>
+
+    <div class="form-group">
+        <label for="{{ location }}-country">Country</label>
+        <input type="text" class="form-control" id="{{ location }}-country" placeholder="United States">
     </div>
 {%- endmacro %}
 
 {% block content %}
     {{ completion(step_list=step_list, curr_step=curr_step) }}
-    <div class="col dashboard-title" >
-       <h2>Forms</h2>
+
+    <div class="row" >
+        <div class="col">
+            <form class="form">
+
+                <div class="form-group">
+                    <label for="#preferred-language">Select your preferred language</label>
+                    <select class="form-control" id="#preferred-language">
+                        <option>English</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="male" name="gender" class="custom-control-input">
+                        <label class="custom-control-label" for="male">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="female" name="gender" class="custom-control-input">
+                        <label class="custom-control-label" for="female">Female</label>
+                    </div>
+                </div>
+
+                <h5 class="form-section-title">What is your mailing address?</h5>
+                {{ address_by_location('mailing') }}
+
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input
+                            id="is-home-address-different"
+                            class="custom-control-input"
+                            type="checkbox"
+                            data-toggle="collapse"
+                            data-target="#home-address-group"
+                        >
+                        <label class="custom-control-label" for="is-home-address-different">Check this if your home address is different than your mailing address</label>
+                    </div>
+                </div>
+
+                <div id="home-address-group" class="collapse">
+                    {{ address_by_location('home') }}
+                </div>
+
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input
+                            id="has-edd-number"
+                            class="custom-control-input"
+                            type="checkbox"
+                            data-toggle="collapse"
+                            data-target="#EDD-container"
+                        >
+                        <label class="custom-control-label" for="has-edd-number">Check this box if you already have an EDD account</label>
+                    </div>
+                </div>
+
+
+                <div id="EDD-container" class="form-group collapse">
+                    <label for="edd-number">What is your account number?</label>
+                    <input type="text" class="form-control" id="edd-number" placeholder="i.e. 12112">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="ssn-number">What is your Social Security Number (SSN)? </label>
+                    <input type="text" class="form-control" id="ssn-number" placeholder="i.e. 02123123">
+                </div>
+
+                <div class="form-group">
+                    <label for="id-number">What is your CA driver's license or State ID number?</label>
+                    <input type="text" class="form-control" id="id-number" placeholder="i.e. 02123123">
+                </div>
+
+                <div class="form-group">
+                    <label for="birthday">What is your date of birth?</label>
+                    <input type="text" class="form-control" name="birthday" id="birthday" placeholder="i.e. 02123123">
+                </div>
+
+                <button type="submit" class="form-submit btn btn-primary">Submit</button>
+            </form>
+        </div>
     </div>
 {% endblock %}
 
