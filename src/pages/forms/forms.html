@@ -55,7 +55,7 @@
 
                 <div class="form-group">
                     <label for="#preferred-language">Select your preferred language</label>
-                    <select class="form-control" id="#preferred-language">
+                    <select class="form-control" name="preferred-language" id="preferred-language">
                         <option>English</option>
                         <option>Spanish</option>
                         <option>French</option>
@@ -64,11 +64,16 @@
 
                 <div class="form-group">
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="male" name="gender" class="custom-control-input">
+                        <input
+                            type="radio"
+                            id="male"
+                            name="gender"
+                            value="male"
+                            class="custom-control-input">
                         <label class="custom-control-label" for="male">Male</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="female" name="gender" class="custom-control-input">
+                        <input type="radio" id="female" name="gender" value="female" class="custom-control-input">
                         <label class="custom-control-label" for="female">Female</label>
                     </div>
                 </div>
