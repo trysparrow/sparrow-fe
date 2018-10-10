@@ -21,28 +21,28 @@
 {% macro address_by_location(location) -%}
     <div class="form-group">
         <label for="{{ location }}-address">PO Box/ Number / Street / Apartment, Suite, Space</label>
-        <input type="text" class="form-control" id="{{ location }}-address" placeholder="1337 Main St, APT 1110">
+        <input type="text" class="form-control" id="{{ location }}-address" name="{{ location }}-address" placeholder="1337 Main St, APT 1110">
     </div>
 
     <div class="form-group">
         <label for="{{ location }}-city">City</label>
-        <input type="text" class="form-control" id="{{ location }}-city" placeholder="San Francisco">
+        <input type="text" class="form-control" id="{{ location }}-city" name="{{ location }}-city" placeholder="San Francisco">
     </div>
 
 
     <div class="form-group">
         <label for="{{ location }}-state">State</label>
-        <input type="text" class="form-control" id="{{ location }}-state" placeholder="CA">
+        <input type="text" class="form-control" id="{{ location }}-state" name="{{ location }}-state" placeholder="CA">
     </div>
 
     <div class="form-group">
         <label for="{{ location }}-zipcode">Zip / Postal Code</label>
-        <input type="text" class="form-control" id="{{ location }}-zipcode" placeholder="94128">
+        <input type="text" class="form-control" id="{{ location }}-zipcode" name="{{ location }}-zipcode" placeholder="94128">
     </div>
 
     <div class="form-group">
         <label for="{{ location }}-country">Country</label>
-        <input type="text" class="form-control" id="{{ location }}-country" placeholder="United States">
+        <input type="text" class="form-control" id="{{ location }}-country" namje="{{ location }}-country" placeholder="United States">
     </div>
 {%- endmacro %}
 
@@ -52,88 +52,158 @@
     <div class="row" >
         <div class="col">
             <form class="form">
-
-                <div class="form-group">
-                    <label for="#preferred-language">Select your preferred language</label>
-                    <select class="form-control" name="preferred-language" id="preferred-language">
-                        <option>English</option>
-                        <option>Spanish</option>
-                        <option>French</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <div class="custom-control custom-radio">
-                        <input
-                            type="radio"
-                            id="male"
-                            name="gender"
-                            value="male"
-                            class="custom-control-input">
-                        <label class="custom-control-label" for="male">Male</label>
+                {% if curr_step == 1 %}
+                    <div class="form-group">
+                        <label for="#preferred-language">Select your preferred language</label>
+                        <select class="form-control" name="preferred-language" id="preferred-language">
+                            <option>English</option>
+                            <option>Spanish</option>
+                            <option>French</option>
+                        </select>
                     </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="female" name="gender" value="female" class="custom-control-input">
-                        <label class="custom-control-label" for="female">Female</label>
+
+
+                    <h5 class="form-section-title">What is your mailing address?</h5>
+                    {{ address_by_location('mailing') }}
+
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input
+                                id="is-home-address-different"
+                                class="custom-control-input"
+                                type="checkbox"
+                                data-toggle="collapse"
+                                data-target="#home-address-group"
+                            >
+                            <label class="custom-control-label" for="is-home-address-different">Check this if your home address is different than your mailing address</label>
+                        </div>
                     </div>
-                </div>
 
-                <h5 class="form-section-title">What is your mailing address?</h5>
-                {{ address_by_location('mailing') }}
-
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input
-                            id="is-home-address-different"
-                            class="custom-control-input"
-                            type="checkbox"
-                            data-toggle="collapse"
-                            data-target="#home-address-group"
-                        >
-                        <label class="custom-control-label" for="is-home-address-different">Check this if your home address is different than your mailing address</label>
+                    <div id="home-address-group" class="collapse">
+                        {{ address_by_location('home') }}
                     </div>
-                </div>
 
-                <div id="home-address-group" class="collapse">
-                    {{ address_by_location('home') }}
-                </div>
-
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input
-                            id="has-edd-number"
-                            class="custom-control-input"
-                            type="checkbox"
-                            data-toggle="collapse"
-                            data-target="#EDD-container"
-                        >
-                        <label class="custom-control-label" for="has-edd-number">Check this box if you already have an EDD account</label>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input
+                                id="has-edd-number"
+                                class="custom-control-input"
+                                type="checkbox"
+                                data-toggle="collapse"
+                                data-target="#EDD-container"
+                            >
+                            <label class="custom-control-label" for="has-edd-number">Check this box if you already have an EDD account</label>
+                        </div>
                     </div>
-                </div>
 
 
-                <div id="EDD-container" class="form-group collapse">
-                    <label for="edd-number">What is your account number?</label>
-                    <input type="text" class="form-control" id="edd-number" placeholder="i.e. 12112">
-                </div>
+                    <div id="EDD-container" class="form-group collapse">
+                        <label for="edd-number">What is your account number?</label>
+                        <input type="text" class="form-control" id="edd-number" placeholder="i.e. 12112">
+                    </div>
 
 
-                <div class="form-group">
-                    <label for="ssn-number">What is your Social Security Number (SSN)? </label>
-                    <input type="text" class="form-control" id="ssn-number" placeholder="i.e. 02123123">
-                </div>
+                    <div class="form-group">
+                        <label for="ssn-number">What is your Social Security Number (SSN)? </label>
+                        <input type="text" class="form-control" id="ssn-number" placeholder="i.e. 02123123">
+                    </div>
 
-                <div class="form-group">
-                    <label for="id-number">What is your CA driver's license or State ID number?</label>
-                    <input type="text" class="form-control" id="id-number" placeholder="i.e. 02123123">
-                </div>
+                    <div class="form-group">
+                        <label for="id-number">What is your CA driver's license or State ID number?</label>
+                        <input type="text" class="form-control" id="id-number" placeholder="i.e. 02123123">
+                    </div>
 
-                <div class="form-group">
-                    <label for="birthday">What is your date of birth?</label>
-                    <input type="text" class="form-control" name="birthday" id="birthday" placeholder="i.e. 02123123">
-                </div>
+                    <div class="form-group">
+                        <label for="birthday">What is your date of birth?</label>
+                        <input type="text" class="form-control" name="birthday" id="birthday" placeholder="i.e. 02123123">
+                    </div>
 
-                <button type="submit" class="form-submit btn btn-primary">Submit</button>
+                    <button type="submit" class="form-submit btn btn-primary">Submit</button>
+
+                {% elif curr_step == 2 %}
+                    <h2>Employer Information</h2>
+
+                    <div class="form-group">
+                        <label for="#occupation">What is your occupation?</label>
+                        <select class="form-control" name="occupation" id="occupation">
+                            <option>CEO</option>
+                            <option>Engineer</option>
+                            <option>Something else?</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input
+                                id="is-goverment-employee"
+                                name="is-goverment-employee"
+                                class="custom-control-input"
+                                type="checkbox"
+                                data-toggle="collapse"
+                                data-target="#unit-number-group"
+                            >
+                            <label class="custom-control-label" for="is-goverment-employee">Check this if you are a goverment employee</label>
+                        </div>
+                    </div>
+
+                    <div id="unit-number-group" class="form-group collapse">
+                        <label for="#unit-number">What is your unit number?</label>
+                        <input type="text" class="form-control" id="unit-number" name="unit-number">
+                    </div>
+
+
+                    <h5>What best describes your type of work?</h5>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <input
+                                type="radio"
+                                id="job-intensity-1"
+                                name="job-intensity"
+                                value="job-intensity-1"
+                                class="custom-control-input">
+                            <label class="custom-control-label" for="job-intensity-1">Mostly sit. Occasionally stand or walk; Occasionally lift, carry, push, pull, or otherwise move objects that weigh 10 lbs or less.
+</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input
+                                type="radio"
+                                id="job-intensity-2"
+                                name="job-intensity"
+                                value="job-intensity-2"
+                                class="custom-control-input">
+                            <label class="custom-control-label" for="job-intensity-2">Mostly walk/stand. Occasionally lift, carry, push, pull, or otherwise move objects that weigh 20 lbs or less. </label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input
+                                type="radio"
+                                id="job-intensity-3"
+                                name="job-intensity"
+                                value="job-intensity-3"
+                                class="custom-control-input">
+                            <label class="custom-control-label" for="job-intensity-3">Constantly lift, carry, push, pull, or otherwise move objects that weigh 10 lbs or less; frequently up to  20 lbs; occasionally up to 50 lbs.</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input
+                                type="radio"
+                                id="job-intensity-4"
+                                name="job-intensity"
+                                value="job-intensity-4"
+                                class="custom-control-input">
+                            <label class="custom-control-label" for="job-intensity-4">Constantly lift, carry, push, pull, or otherwise move objects that weigh 20 lbs or less; frequently up to  50 lbs; occasionally up to 100 lbs. </label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input
+                                type="radio"
+                                id="job-intensity-5"
+                                name="job-intensity"
+                                value="job-intensity-5"
+                                class="custom-control-input">
+                            <label class="custom-control-label" for="job-intensity-5">Constantly lift, carry, push, pull, or otherwise move objects that weigh 10 lbs or less; frequently over 50lbs; occasionally over 100 lbs. </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="form-submit btn btn-primary">Submit</button>
+                {% endif %}
             </form>
         </div>
     </div>
