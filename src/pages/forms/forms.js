@@ -12,7 +12,10 @@ $(document).ready(function() {
     });
 
     // For future proofing let's create our own javascript in Plain JS
+
+
     const clearCollapsedForms = () => {
+        // This removes the 'required' attribute of anything that is collapsed and invisible before submition.
         const collapsedContainerSelector = 'form.form .collapse';
         const collapsedElements = document.querySelectorAll(`${collapsedContainerSelector} input, ${collapsedContainerSelector} select, ${collapsedContainerSelector} textarea`);
         collapsedElements.forEach(el => {
@@ -21,4 +24,17 @@ $(document).ready(function() {
             el.value = null;
         });
     };
+
+    const onSubmit = event => {
+        // Stop the submission of the form
+        event.preventDefault();
+
+        clearCollapsedForms();
+
+        // Trigger the submition of the form with the cleared out fields
+        event.currentTarget.removeEventListener('click', onSubmit)
+        event.currentTarget.click();
+    };
+
+    document.querySelector('form.form button[type="submit"]').addEventListener('click', onSubmit);
 });
